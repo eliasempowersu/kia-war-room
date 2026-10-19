@@ -106,7 +106,7 @@
     .close{border:1px solid var(--line);background:transparent;width:34px;height:34px;border-radius:5px;cursor:pointer;font-size:20px}
     .modal-body{padding:21px}.modal-body p{color:var(--muted);line-height:1.5;margin:0 0 18px}.brief{background:var(--bg);border:1px solid var(--line);padding:15px;border-radius:7px;font:500 12px/1.55 "IBM Plex Mono",monospace;white-space:pre-wrap}.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.btn{border:1px solid var(--line);background:transparent;padding:10px 14px;border-radius:5px;cursor:pointer;font:600 11px/1 "IBM Plex Mono",monospace}.btn:hover,.btn:focus-visible{border-color:var(--cyan);outline:none}
     @media (max-width:980px){.metrics{grid-template-columns:repeat(2,1fr)}.hero-grid,.battle{grid-template-columns:1fr}.battle-main{border-right:0;border-bottom:1px solid var(--line)}.battle-stat{min-height:220px}.span-7,.span-5{grid-column:span 12}}
-    @media (max-width:620px){.shell{padding:15px}.command{grid-template-columns:1fr;align-items:start}.status{text-align:left}.metrics{grid-template-columns:1fr 1fr;gap:8px}.metric{min-height:116px;padding:14px}.metric-value{font-size:31px}.tabs{display:grid;grid-template-columns:repeat(4,1fr)}.tab{padding:10px 6px}.battle h2{font-size:33px}.battle-number{font-size:64px}.card-pad{padding:16px}.bar-item{grid-template-columns:86px 1fr 62px;gap:7px}.deal{grid-template-columns:1fr auto}.deal .deal-num:nth-child(3){grid-column:1/-1;text-align:left}.modal-actions{display:grid}.btn{width:100%}}
+    @media (max-width:620px){.shell{padding:15px}.command{grid-template-columns:1fr;align-items:start}.status{text-align:left}.metrics{grid-template-columns:1fr 1fr;gap:8px}.metric{min-height:116px;padding:14px}.metric-value{font-size:31px}.tabs{display:grid;grid-template-columns:repeat(5,1fr)}.tab{padding:10px 6px}.battle h2{font-size:33px}.battle-number{font-size:64px}.card-pad{padding:16px}.bar-item{grid-template-columns:86px 1fr 62px;gap:7px}.deal{grid-template-columns:1fr auto}.deal .deal-num:nth-child(3){grid-column:1/-1;text-align:left}.modal-actions{display:grid}.btn{width:100%}}
     @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
   <style>
@@ -169,7 +169,7 @@
       .shell{padding:24px 18px}.command{align-items:flex-start;margin-bottom:12px}.command h1{font-size:27px}.kicker{font-size:11px;letter-spacing:.24em}.status{font-size:14px;padding-top:28px}.pulse{width:13px;height:13px}
       .metrics{gap:12px}.metric{min-height:234px;padding:20px}.metric-label{font-size:12px}.metric-value{font-size:49px;margin:16px 0 20px}.metric-sub{font-size:16px}.metric .tap{font-size:11px}.metric-progress{height:9px;margin-bottom:17px}
       .battle{grid-template-columns:1fr}.battle-main{border-right:0;border-bottom:1px solid var(--line)}.battle h2{font-size:36px}.battle-number{font-size:63px}
-      .tabs{grid-template-columns:repeat(4,1fr)}.tab{font-size:10px;padding:10px 4px}
+      .tabs{grid-template-columns:repeat(5,1fr)}.tab{font-size:9px;padding:10px 2px}
     }
     @media(max-width:430px){
       .shell{padding:22px 16px}.command{display:block;position:relative}.command h1{font-size:19px;max-width:245px}.command .status{position:absolute;right:0;top:1px;padding:0;font-size:10px;gap:7px}.command .pulse{width:10px;height:10px}.kicker{font-size:9px;line-height:1.7;letter-spacing:.2em;margin-top:10px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.metric{min-height:210px;padding:16px}.metric-label{font-size:9px;letter-spacing:.15em}.metric-value{font-size:42px;margin:14px 0 18px}.metric-sub{font-size:12px}.metric .tap{font-size:8px;margin-top:13px}.metric-progress{height:8px;margin-bottom:15px}.metric-pace .metric-value{font-size:37px}.metric-total .metric-value{font-size:37px}.metric .metric-value{white-space:nowrap}.metric-used .metric-value{font-size:31px}
@@ -291,6 +291,65 @@
     .sum-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
     @media(max-width:620px){.sum-grid{grid-template-columns:1fr}}
   </style>
+  <style>
+    /* LEADS snapshot view (Project Resurrection) */
+    .snapshot-note{margin:0 0 14px;color:var(--muted);font:600 11px/1.5 "IBM Plex Mono",monospace;letter-spacing:.1em}
+    .lead-metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+    .lead-big{font-size:clamp(44px,8vw,60px);font-weight:700;line-height:1;letter-spacing:-.04em;margin:14px 0 10px}
+    .stage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .stage-card{display:block;width:100%;text-align:left;background:var(--wash);border:1px solid var(--line);border-radius:10px;padding:14px 15px;cursor:pointer;color:var(--text);font:inherit}
+    .stage-card:hover,.stage-card:focus-visible{border-color:var(--cyan);outline:none}
+    .stage-card.active{border-color:var(--cyan);background:var(--cyan-dim)}
+    .stage-card.zero{opacity:.55}
+    .stage-card .sc-name{display:block;font:600 11px/1.35 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .stage-card.active .sc-name{color:var(--text)}
+    .stage-card .sc-count{display:block;font-size:34px;font-weight:700;line-height:1;margin-top:8px}
+    .sp-head,.sp-row{display:grid;grid-template-columns:1.5fr .5fr .8fr .6fr;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+    .sp-row:last-child{border-bottom:0}
+    .sp-head{padding:2px 0 10px;color:var(--muted);font:600 9.5px/1.3 "IBM Plex Mono",monospace;letter-spacing:.07em;text-transform:uppercase}
+    .sp-head>span:not(:first-child),.sp-row>span:not(:first-child){text-align:right;font:600 14px/1 "IBM Plex Mono",monospace}
+    .sp-head>span:not(:first-child){font-size:9.5px}
+    .sp-name{font-size:16px;font-weight:700}
+    .lead-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:6px}
+    .week-select{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:7px;padding:9px 10px;font:600 12px/1.2 "IBM Plex Mono",monospace;letter-spacing:.03em;max-width:100%}
+    .week-select:focus-visible{border-color:var(--cyan);outline:none}
+    .lead-count-line{color:var(--muted);font:600 11px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em}
+    .clear-filter{border:1px solid var(--line);background:transparent;border-radius:5px;padding:7px 11px;cursor:pointer;font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.06em;color:var(--cyan)}
+    .clear-filter:hover,.clear-filter:focus-visible{border-color:var(--cyan);outline:none}
+    .lead-head,.lead-row{display:grid;grid-template-columns:1.25fr .62fr .8fr 1.45fr 1fr 1.15fr;gap:10px;align-items:start}
+    .lead-head{padding:10px 12px;border-bottom:1px solid var(--line)}
+    .sort-btn{background:none;border:0;padding:0;cursor:pointer;font:600 10px/1.2 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left}
+    .sort-btn:hover,.sort-btn:focus-visible{color:var(--text);outline:none}
+    .sort-btn .arrow{color:var(--cyan)}
+    .lead-row{padding:12px;border-bottom:1px solid var(--line);cursor:pointer}
+    .lead-row:last-child{border-bottom:0}
+    .lead-row:hover,.lead-row:focus-visible{background:var(--wash);outline:none}
+    .lead-name{font-weight:700;font-size:16px;line-height:1.25}
+    .lead-cell{font-size:14px;line-height:1.35;min-width:0}
+    .lead-cell.mut{color:var(--muted)}
+    .lead-cell .due{display:block;color:var(--muted);font:500 11px/1.4 "IBM Plex Mono",monospace;margin-top:2px}
+    .stage-chip{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:4px 9px;font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+    .stage-chip.working{border-color:var(--cyan);color:var(--cyan)}
+    .stage-chip.appointment{border-color:var(--amber);color:var(--amber)}
+    .lead-detail{grid-column:1/-1;display:none;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:12px 14px;font:500 12px/1.7 "IBM Plex Mono",monospace;color:var(--muted)}
+    .lead-detail strong{color:var(--text)}
+    .lead-row.open .lead-detail{display:block}
+    .lead-empty{padding:26px 12px;color:var(--muted);font-size:15px;text-align:center}
+    @media(min-width:1280px){.stage-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+    @media(max-width:700px){
+      .lead-head{display:none}
+      .lead-metrics{gap:10px}
+      .lead-big{font-size:42px}
+      .stage-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .lead-row{grid-template-columns:minmax(0,1fr) auto;gap:7px 10px}
+      .c-name{grid-column:1;grid-row:1}
+      .c-stage{grid-column:2;grid-row:1;text-align:right}
+      .c-date,.c-veh,.c-rep,.c-next{grid-column:1/-1}
+      .lead-row .lead-cell::before{content:attr(data-label);display:block;color:var(--muted);font:600 8.5px/1.3 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+      .sp-name{font-size:14px}
+      .sp-row>span:not(:first-child){font-size:13px}
+    }
+  </style>
 </head>
 <body>
   <main class="shell">
@@ -311,6 +370,7 @@
       <button class="tab" data-view="new" aria-selected="false">NEW</button>
       <button class="tab" data-view="used" aria-selected="false">USED</button>
       <button class="tab" data-view="team" aria-selected="false">SALES PEOPLE</button>
+      <button class="tab" data-view="leads" aria-selected="false">LEADS</button>
     </nav>
 
     <section id="overview" class="view active">
@@ -476,6 +536,50 @@
       </div>
       <p class="footnote">Sales figures from “October 2026 - KIA SALES LOG,” through October 19. Tap LIVE at the top of the board to refresh.</p>
     </section>
+
+    <section id="leads" class="view">
+      <p class="snapshot-note">SNAPSHOT · OCT 19 — STAGES MOVE IN THE PROJECT RESURRECTION APP</p>
+      <div class="lead-metrics">
+        <article class="card card-pad">
+          <span class="section-label">Avg engagement score</span>
+          <div class="lead-big warning" id="avgScore">–</div>
+          <span class="metric-sub">0–100 · touches + engagement + recency</span>
+        </article>
+        <article class="card card-pad">
+          <span class="section-label">Hot leads (score 70+)</span>
+          <div class="lead-big cyan" id="hotLeads">–</div>
+          <span class="metric-sub">Work these first — highest revival odds</span>
+        </article>
+      </div>
+      <div class="split-grid">
+        <article class="card card-pad span-12">
+          <div class="card-head"><div><span class="section-label">Pipeline · tap a stage to filter the list</span><h2 class="card-title">Stages</h2></div><span class="tap">SNAPSHOT · OCT 19</span></div>
+          <div class="stage-grid" id="stageGrid"></div>
+        </article>
+        <article class="card card-pad span-12">
+          <div class="card-head"><div><span class="section-label">Audit</span><h2 class="card-title">By salesperson</h2></div><span class="tap">SNAPSHOT · OCT 19</span></div>
+          <div id="repTable"></div>
+        </article>
+        <article class="card card-pad span-12">
+          <div class="card-head"><div><span class="section-label">Project Resurrection</span><h2 class="card-title">Lead list</h2></div><span class="tap">TAP A LEAD FOR DETAIL ›</span></div>
+          <div class="lead-controls">
+            <select class="week-select" id="weekSelect" aria-label="Filter leads by week">
+              <option value="rolling" selected>Current 7 days (rolling) · Oct 13–19</option>
+              <option value="w1">Week 1 · Oct 1–7</option>
+              <option value="w2">Week 2 · Oct 8–14</option>
+              <option value="w3">Week 3 · Oct 15–21</option>
+              <option value="w4">Week 4 · Oct 22–28</option>
+              <option value="w5">Week 5 · Oct 29–31</option>
+              <option value="all">All leads</option>
+            </select>
+            <span class="lead-count-line" id="leadCountLine"></span>
+            <button class="clear-filter" id="clearFilter" type="button" hidden>CLEAR FILTERS</button>
+          </div>
+          <div class="lead-head" id="leadHead" aria-hidden="false"></div>
+          <div id="leadList"></div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <dialog id="briefDialog" aria-labelledby="modalTitle">
@@ -567,6 +671,219 @@
           liveBtn.classList.remove('is-updating');
         },700);
       });
+    })();
+  </script>
+  <script>
+    /* LEADS snapshot — static Project Resurrection data (Oct 19). Not touched by the sales-log LIVE refresh. */
+    (function(){
+      var STAGES=[
+        {key:'new',label:'New — Not Contacted',short:'New'},
+        {key:'working',label:'Working',short:'Working'},
+        {key:'engaging',label:'Engaging',short:'Engaging'},
+        {key:'negotiation',label:'Negotiation',short:'Negotiation'},
+        {key:'appointment',label:'Appointment',short:'Appointment'},
+        {key:'sold',label:'Sold',short:'Sold'}
+      ];
+      var stageOrder={},stageShort={};
+      STAGES.forEach(function(s,i){stageOrder[s.key]=i;stageShort[s.key]=s.short});
+      /* name | vehicle | salesperson | date in | stage | next task | due | touches | score | phone */
+      var RAW=[
+        ['Roberto Acoff','2024 Used Nissan Altima','Rudy Escobar-Avila','2026-10-10','new','','',0,0,'(434) 215-4945'],
+        ['Antonio Andrews','2026 New KIA Sportage','Bob Borowski II','2026-10-10','new','','',0,0,'(540) 566-8903'],
+        ['Chanel Andrews','','Nathan Billings','2026-10-17','working','','',1,25,'(434) 439-6004'],
+        ['Linda Bartlett','2027 New KIA Sportage Hybrid','Caleb Banaitis','2026-10-16','new','','',0,0,'(314) 799-1562'],
+        ['Nadia Baytops','2026 New KIA K5','Rudy Escobar-Avila','2026-10-12','new','','',0,0,'(540) 519-2457'],
+        ['Stevie Bond','2027 New KIA Sportage','Rudy Escobar-Avila','2026-10-11','new','','',0,0,'(540) 570-3505'],
+        ['Destiny Brown','2026 New KIA','Nathan Billings','2026-10-12','new','','',0,0,'(434) 229-0660'],
+        ['Xenia Cabacungan','2026 New KIA Sorento','Nathan Billings','2026-10-11','new','','',0,0,'(434) 938-2500'],
+        ['Brenda Cash','2018 Used Honda CR-V','Bob Borowski II','2026-10-17','appointment','Appointment','2026-10-19',0,30,'(434) 444-5844'],
+        ['S Choksha','2026 New KIA Niro EV','Bob Borowski II','2026-10-15','new','','',0,0,''],
+        ['Auna Cook','2016 Used Ford Explorer','Nathan Billings','2026-10-10','new','Day 1 Email','2026-10-11',0,0,''],
+        ['Patty Cooper','2026 New KIA EV6','Caleb Banaitis','2026-10-18','new','','',0,0,'(540) 484-3719'],
+        ['Mildred Culpeper','2027 New KIA Sportage','Caleb Banaitis','2026-10-15','new','','',0,0,'(434) 219-7938'],
+        ['Keisha D','2016 Used Ford Explorer','Bob Borowski II','2026-10-14','new','','',0,0,'(434) 347-0748'],
+        ['Troy Deeds','2027 New KIA Sportage Hybrid','Victor Napolillo','2026-10-13','new','','',0,0,'(434) 996-4706'],
+        ['Freddie Dempsey','2016 Used Ford Explorer','Rudy Escobar-Avila','2026-10-18','new','','',0,0,'(540) 525-2500'],
+        ['Amber Eisenhart','2016 Used Ford Explorer','Victor Napolillo','2026-10-18','new','','',0,0,'(434) 317-0292'],
+        ['Tammi Ferguson','2026 New KIA EV9','Caleb Banaitis','2026-10-16','new','','',0,0,'(540) 204-7722'],
+        ['Colleen Frahm','2026 New KIA Sorento','Nathan Billings','2026-10-12','new','','',0,0,'(757) 374-1606'],
+        ['Michael Frank','2027 New KIA Sorento','Victor Napolillo','2026-10-15','new','','',0,0,'(540) 494-9037'],
+        ['Jim Hamilton','2027 New KIA Sportage Hybrid','Victor Napolillo','2026-10-11','new','','',0,0,'(540) 473-1476'],
+        ['Kristy Haythe','','Caleb Banaitis','2026-10-18','new','','',0,0,'(434) 382-7123'],
+        ['Claudia Hedrick','2023 New KIA Sportage','Bob Borowski II','2026-10-16','new','','',0,0,''],
+        ['Robert Hendrick','2027 New KIA Telluride','Nathan Billings','2026-10-15','new','','',0,0,'(434) 907-0094'],
+        ['Janet Hostetter','2026 New KIA Sportage','Rudy Escobar-Avila','2026-10-11','new','','',0,0,'(540) 460-5804'],
+        ['Charnise Huggins','2027 New KIA Telluride','Bob Borowski II','2026-10-18','new','','',0,0,'(434) 426-0446'],
+        ['Brayden Huseonica','2026 New KIA K4','Bob Borowski II','2026-10-10','new','','',0,0,'(434) 856-6689'],
+        ['Mary Jackson','2027 New KIA Telluride','Chester Cook','2026-10-17','new','','',0,0,'(434) 841-7171'],
+        ['Mary Johnson','2027 New KIA Telluride','Victor Napolillo','2026-10-17','new','','',0,0,'(540) 313-2876'],
+        ['Daryl Johnson','2026 New KIA Sorento','Victor Napolillo','2026-10-14','new','','',0,0,'(540) 420-7528'],
+        ['Lisa Jones','2026 New KIA EV6','Caleb Banaitis','2026-10-14','new','','',0,0,'(434) 709-6550'],
+        ['Amy McClure','2027 New KIA Telluride','Nathan Billings','2026-10-11','new','','',0,0,'(434) 480-2046'],
+        ['Faheem Megginson','2024 Used Mazda Mazda3','Bob Borowski II','2026-10-17','appointment','Appointment','2026-10-19',0,30,'(434) 291-0101'],
+        ['Helen Melunis','2026 New KIA Niro','Bob Borowski II','2026-10-11','new','','',0,0,'(434) 363-1788'],
+        ['Elias Michael','2026 Used KIA Sorento','Rudy Escobar-Avila','2026-10-12','new','','',0,0,'(434) 455-7410'],
+        ['Jimmie Montgomery','2027 New KIA Sportage','Nathan Billings','2026-10-16','new','','',0,0,'(540) 618-7107'],
+        ['Nikki Moshier','2027 New KIA Telluride','Nathan Billings','2026-10-10','new','No Show Call','2026-10-17',0,0,'(434) 575-0085'],
+        ['Victor Napolillo','2026 Used KIA Sorento','Victor Napolillo','2026-10-12','new','','',0,0,'(434) 941-6095'],
+        ['Donni Nicely','2026 New KIA Sorento','Victor Napolillo','2026-10-11','new','','',0,0,'(434) 610-9225'],
+        ['Timmaine Pannell','','Rudy Escobar-Avila','2026-10-17','new','','',0,0,'(434) 285-0687'],
+        ['James Parrish','2025 New KIA Soul','Victor Napolillo','2026-10-11','new','','',0,0,'(434) 420-0346'],
+        ['Fabian Poindexter','','Caleb Banaitis','2026-10-14','new','','',0,0,'(434) 454-0150'],
+        ['Samantha Ronk','2027 New KIA Telluride','Caleb Banaitis','2026-10-13','new','','',0,0,'(540) 797-5541'],
+        ['Randy Sheppard','2027 New KIA K5','Bob Borowski II','2026-10-18','new','Day 1 Email','2026-10-19',0,0,'(540) 239-4424'],
+        ['Greg Shumaker','2026 New KIA Carnival Hybrid','Rudy Escobar-Avila','2026-10-16','new','','',0,0,'(757) 533-1802'],
+        ['Oluwapelumi Sijuade','2027 New KIA K5','Nathan Billings','2026-10-15','new','','',0,0,''],
+        ['Janet Smith','2027 New KIA K4','Bob Borowski II','2026-10-13','new','Phone Follow Up','2026-10-19',0,0,'(540) 986-3874'],
+        ['Erika Sorto','2026 New KIA K5','Victor Napolillo','2026-10-17','new','','',0,0,'(540) 682-0923'],
+        ['Paul Staffieri','2027 New KIA Telluride Hybrid','Nathan Billings','2026-10-12','new','','',0,0,'(732) 513-0518'],
+        ['Tim Stover','2016 Used Ford Explorer','Victor Napolillo','2026-10-18','new','','',0,0,'(804) 466-8834'],
+        ['James Tackett','2027 New KIA Carnival Hybrid','Nathan Billings','2026-10-10','new','','',0,0,'(606) 336-1982'],
+        ['Stephanie Thomas','','Bob Borowski II','2026-10-11','new','','',0,0,'(540) 263-8081'],
+        ['Alexis Thomas','2027 New KIA Sorento Hybrid','Rudy Escobar-Avila','2026-10-13','new','','',0,0,'(434) 941-6451'],
+        ['Darlene Thompson','2023 Used KIA Sportage','Rudy Escobar-Avila','2026-10-11','new','','',0,0,'(540) 294-0585'],
+        ['Danielle Thompson','2027 New KIA Seltos','Nathan Billings','2026-10-18','new','','',0,0,'(540) 450-9579'],
+        ['Catherine Trettin','2026 New KIA Niro','Nathan Billings','2026-10-18','new','','',0,0,'(443) 716-9102'],
+        ['Nikolai Utkin','2027 New KIA Sportage Hybrid','Caleb Banaitis','2026-10-17','new','','',0,0,'(801) 874-0869'],
+        ['Meg Wassum','2027 New KIA Carnival Hybrid','Victor Napolillo','2026-10-10','new','','',0,0,'(804) 972-4041'],
+        ['Christopher Weber','2027 New KIA Telluride','Rudy Escobar-Avila','2026-10-15','new','','',0,0,''],
+        ['David Webster','2027 New KIA Telluride','Victor Napolillo','2026-10-14','new','','',0,0,'(540) 400-2045'],
+        ['Stephanie Whisman','2027 New KIA Seltos','Victor Napolillo','2026-10-16','new','','',0,0,'(540) 467-0453'],
+        ['Stephanie Whisman','2027 New KIA Seltos','Victor Napolillo','2026-10-15','new','','',0,0,'(540) 467-0085'],
+        ['Bruce Wood','2027 New KIA Telluride','Bob Borowski II','2026-10-12','new','','',0,0,'(540) 890-5554'],
+        ['Denise Wood','','Victor Napolillo','2026-10-15','new','','',0,0,'(434) 942-1771'],
+        ['Mary Wright','2027 New KIA Carnival Hybrid','Nathan Billings','2026-10-15','new','','',0,0,'(540) 588-8093'],
+        ['Blake Yates','2026 New KIA K4','Caleb Banaitis','2026-10-15','new','','',0,0,'(352) 931-2806']
+      ];
+      var leads=RAW.map(function(r){
+        return {name:r[0],vehicle:r[1],rep:r[2],dateIn:r[3],stage:r[4],
+          task:r[5]||'Day 1 Email',due:r[6]||r[3],touches:r[7]||0,score:r[8]||0,phone:r[9]||''};
+      });
+      var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      function fmtD(iso){var p=iso.split('-');return MONTHS[Number(p[1])-1]+' '+Number(p[2])}
+      function fmtDFull(iso){var p=iso.split('-');return MONTHS[Number(p[1])-1]+' '+Number(p[2])+', '+p[0]}
+      function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+      /* Metrics */
+      var totalScore=0,hot=0;
+      leads.forEach(function(l){totalScore+=l.score;if(l.score>=70)hot++});
+      document.getElementById('avgScore').textContent=String(Math.round(totalScore/leads.length*10)/10);
+      document.getElementById('hotLeads').textContent=String(hot);
+      /* Stage cards */
+      var stageFilter=null;
+      var stageGrid=document.getElementById('stageGrid');
+      function stageCount(key){var n=0;leads.forEach(function(l){if(l.stage===key)n++});return n}
+      STAGES.forEach(function(s){
+        var n=stageCount(s.key);
+        var b=document.createElement('button');
+        b.type='button';b.className='stage-card'+(n===0?' zero':'');b.dataset.stage=s.key;
+        b.setAttribute('aria-pressed','false');
+        b.innerHTML='<span class="sc-name">'+esc(s.label)+'</span><span class="sc-count">'+n+'</span>';
+        b.addEventListener('click',function(){
+          stageFilter=(stageFilter===s.key)?null:s.key;
+          renderStages();renderList();
+        });
+        stageGrid.appendChild(b);
+      });
+      function renderStages(){
+        stageGrid.querySelectorAll('.stage-card').forEach(function(b){
+          var on=b.dataset.stage===stageFilter;
+          b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false');
+        });
+      }
+      /* By salesperson */
+      var repAgg={};
+      leads.forEach(function(l){
+        var a=repAgg[l.rep]||(repAgg[l.rep]={n:0,never:0,touches:0});
+        a.n++;if(l.touches===0)a.never++;a.touches+=l.touches;
+      });
+      var repNames=Object.keys(repAgg).sort(function(a,b){return repAgg[b].n-repAgg[a].n||a.localeCompare(b)});
+      var repHtml='<div class="sp-head"><span>Salesperson</span><span>Leads</span><span>Never touched</span><span>Avg touches</span></div>';
+      repNames.forEach(function(name){
+        var a=repAgg[name];
+        repHtml+='<div class="sp-row"><span class="sp-name">'+esc(name)+'</span><span>'+a.n+'</span><span class="'+(a.never>0?'negative':'')+'">'+a.never+'</span><span>'+(a.touches/a.n).toFixed(1)+'</span></div>';
+      });
+      document.getElementById('repTable').innerHTML=repHtml;
+      /* List: week filter + sort + render */
+      var WEEKS={rolling:['2026-10-13','2026-10-19'],w1:['2026-10-01','2026-10-07'],w2:['2026-10-08','2026-10-14'],w3:['2026-10-15','2026-10-21'],w4:['2026-10-22','2026-10-28'],w5:['2026-10-29','2026-10-31'],all:null};
+      var weekSel=document.getElementById('weekSelect');
+      var listEl=document.getElementById('leadList');
+      var countLine=document.getElementById('leadCountLine');
+      var clearBtn=document.getElementById('clearFilter');
+      var sortKey='dateIn',sortDir=1;
+      var COLS=[
+        {key:'name',label:'Lead'},
+        {key:'dateIn',label:'Date In'},
+        {key:'stage',label:'Stage'},
+        {key:'vehicle',label:'Vehicle'},
+        {key:'rep',label:'Salesperson'},
+        {key:'next',label:'Next step'}
+      ];
+      var headEl=document.getElementById('leadHead');
+      COLS.forEach(function(c){
+        var b=document.createElement('button');
+        b.type='button';b.className='sort-btn';b.dataset.key=c.key;
+        b.addEventListener('click',function(){
+          if(sortKey===c.key){sortDir*=-1}else{sortKey=c.key;sortDir=1}
+          renderHead();renderList();
+        });
+        headEl.appendChild(b);
+      });
+      function renderHead(){
+        headEl.querySelectorAll('.sort-btn').forEach(function(b){
+          var c=null;COLS.forEach(function(x){if(x.key===b.dataset.key)c=x});
+          b.innerHTML=esc(c.label)+(sortKey===c.key?' <span class="arrow">'+(sortDir===1?'▲':'▼')+'</span>':'');
+        });
+      }
+      function sortVal(l,key){
+        if(key==='stage')return stageOrder[l.stage];
+        if(key==='next')return l.due+'|'+l.task;
+        return (l[key]||'').toLowerCase();
+      }
+      function visibleLeads(){
+        var range=WEEKS[weekSel.value];
+        var out=leads.filter(function(l){
+          if(stageFilter&&l.stage!==stageFilter)return false;
+          if(range&&(l.dateIn<range[0]||l.dateIn>range[1]))return false;
+          return true;
+        });
+        out.sort(function(a,b){
+          var va=sortVal(a,sortKey),vb=sortVal(b,sortKey);
+          if(va<vb)return -1*sortDir;if(va>vb)return 1*sortDir;return 0;
+        });
+        return out;
+      }
+      function renderList(){
+        var rows=visibleLeads();
+        countLine.textContent='SHOWING '+rows.length+' OF '+leads.length+' LEADS';
+        clearBtn.hidden=!(stageFilter||weekSel.value!=='rolling');
+        if(!rows.length){listEl.innerHTML='<div class="lead-empty">No leads in this window.</div>';return}
+        var html='';
+        rows.forEach(function(l,i){
+          html+='<div class="lead-row" tabindex="0" role="button" aria-expanded="false" data-row="'+i+'">'
+            +'<span class="lead-name c-name">'+esc(l.name)+'</span>'
+            +'<span class="lead-cell mut c-date" data-label="Date In">'+fmtD(l.dateIn)+'</span>'
+            +'<span class="lead-cell c-stage"><span class="stage-chip '+esc(l.stage)+'">'+esc(stageShort[l.stage])+'</span></span>'
+            +'<span class="lead-cell c-veh" data-label="Vehicle">'+esc(l.vehicle||'—')+'</span>'
+            +'<span class="lead-cell c-rep" data-label="Salesperson">'+esc(l.rep)+'</span>'
+            +'<span class="lead-cell c-next" data-label="Next step">'+esc(l.task)+'<span class="due">DUE '+fmtD(l.due).toUpperCase()+'</span></span>'
+            +'<span class="lead-detail">NEXT STEP <strong>'+esc(l.task)+'</strong> · DUE <strong>'+esc(fmtDFull(l.due))+'</strong><br>PHONE <strong>'+esc(l.phone||'—')+'</strong> · TOUCHES <strong>'+l.touches+'</strong> · ENGAGEMENT SCORE <strong>'+l.score+'</strong><br>DATE IN <strong>'+esc(fmtDFull(l.dateIn))+'</strong> · STAGE <strong>'+esc(stageShort[l.stage])+'</strong> · SALESPERSON <strong>'+esc(l.rep)+'</strong></span>'
+            +'</div>';
+        });
+        listEl.innerHTML=html;
+        listEl.querySelectorAll('.lead-row').forEach(function(row){
+          function toggle(){
+            var open=row.classList.toggle('open');
+            row.setAttribute('aria-expanded',open?'true':'false');
+          }
+          row.addEventListener('click',toggle);
+          row.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+        });
+      }
+      weekSel.addEventListener('change',renderList);
+      clearBtn.addEventListener('click',function(){
+        stageFilter=null;weekSel.value='rolling';renderStages();renderList();
+      });
+      renderHead();renderList();
     })();
   </script>
 </body>
