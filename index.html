@@ -290,6 +290,17 @@
     /* Summary + headline inventory cards (New & Used pages) */
     .sum-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
     @media(max-width:620px){.sum-grid{grid-template-columns:1fr}}
+    /* Used Health Report snapshot table */
+    .health-table{width:100%;border-collapse:collapse}
+    .health-table th,.health-table td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--line)}
+    .health-table th:first-child,.health-table td:first-child{text-align:left;padding-left:0}
+    .health-table th:last-child,.health-table td:last-child{padding-right:0}
+    .health-table th{color:var(--muted);font:600 10px/1.3 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+    .health-table td{font:600 15px/1.2 "IBM Plex Mono",monospace}
+    .health-table td:first-child{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:16px;font-weight:600}
+    .health-table tbody tr:last-child td{border-bottom:0}
+    .health-table .health-total td{border-top:2px solid var(--line);color:var(--cyan)}
+    @media(max-width:620px){.health-table th,.health-table td{padding:9px 6px}.health-table td{font-size:13px}.health-table td:first-child{font-size:14px}}
   </style>
   <style>
     /* LEADS snapshot view (Project Resurrection) */
@@ -514,6 +525,18 @@
             <div class="health"><span class="health-num">58 days</span><span class="health-label">Avg age in stock</span></div>
             <div class="health"><span class="health-num warning">214 days</span><span class="health-label">Oldest unit on the lot</span></div>
           </div>
+        </article>
+        <article class="card card-pad span-12">
+          <div class="card-head"><div><span class="section-label">Inventory health</span><h2 class="card-title">Used Health Report</h2></div><span class="tap">DEALERSLINK · OCT 19</span></div>
+          <table class="health-table">
+            <thead><tr><th scope="col">Age</th><th scope="col">Units</th><th scope="col">Avg Investment</th><th scope="col">Investment</th></tr></thead>
+            <tbody>
+              <tr><td>Under 30 Days</td><td>12</td><td>$17,568</td><td>$210,810</td></tr>
+              <tr><td>30 Days – 60 Days</td><td>2</td><td>$19,905</td><td>$39,810</td></tr>
+              <tr><td>Over 60 Days</td><td>12</td><td>$27,330</td><td>$327,957</td></tr>
+              <tr class="health-total"><td>All Units</td><td>26</td><td>$22,253</td><td>$578,577</td></tr>
+            </tbody>
+          </table>
         </article>
         <article class="card card-pad span-12">
           <div class="card-head"><div><span class="section-label">Used-car deals</span><h2 class="card-title">Every used deal · front &amp; back</h2></div><span class="tap">TOP 3 = 96% OF FRONT LOSS</span></div>
