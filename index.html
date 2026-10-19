@@ -352,6 +352,7 @@
     .stage-chip{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:4px 9px;font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
     .stage-chip.working{border-color:var(--cyan);color:var(--cyan)}
     .stage-chip.appointment{border-color:var(--amber);color:var(--amber)}
+    .stage-chip.negotiation{border-color:var(--lime);color:var(--lime)}
     .lead-detail{grid-column:1/-1;display:none;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:12px 14px;font:500 12px/1.7 "IBM Plex Mono",monospace;color:var(--muted)}
     .lead-detail .ld i{font-style:normal}
     .lead-detail strong{color:var(--text)}
@@ -486,7 +487,7 @@
           <div class="sum-grid">
             <div class="health"><span class="health-num warning">$13,310.71</span><span class="health-label">MTD new gross</span></div>
             <div class="health"><span class="health-num positive">+$797</span><span class="health-label">Avg front per deal · 7 deals</span></div>
-            <div class="health"><span class="health-num">0</span><span class="health-label">Deals working · LEADS pipeline · Oct 19</span></div>
+            <div class="health"><span class="health-num">2</span><span class="health-label">Deals working · LEADS pipeline · Oct 19</span></div>
           </div>
         </article>
         <article class="card card-pad span-7 clickable" tabindex="0" role="button" data-topic="target">
@@ -761,25 +762,25 @@
         ['Destiny Brown','2026 New KIA','Nathan Billings','2026-10-12','new','','',0,0,'(434) 229-0660'],
         ['Xenia Cabacungan','2026 New KIA Sorento','Nathan Billings','2026-10-11','new','','',0,0,'(434) 938-2500'],
         ['Brenda Cash','2018 Used Honda CR-V','Bob Borowski II','2026-10-17','appointment','Appointment','2026-10-19',0,30,'(434) 444-5844'],
-        ['S Choksha','2026 New KIA Niro EV','Bob Borowski II','2026-10-15','new','','',0,0,''],
+        ['S Choksha','2026 New KIA Niro EV','Bob Borowski II','2026-10-15','working','','',0,0,''],
         ['Auna Cook','2016 Used Ford Explorer','Nathan Billings','2026-10-10','new','Day 1 Email','2026-10-11',0,0,''],
-        ['Patty Cooper','2026 New KIA EV6','Caleb Banaitis','2026-10-18','new','','',0,0,'(540) 484-3719'],
+        ['Patty Cooper','2026 New KIA EV6','Caleb Banaitis','2026-10-18','working','','',0,0,'(540) 484-3719'],
         ['Mildred Culpeper','2027 New KIA Sportage','Caleb Banaitis','2026-10-15','new','','',0,0,'(434) 219-7938'],
-        ['Keisha D','2016 Used Ford Explorer','Bob Borowski II','2026-10-14','new','','',0,0,'(434) 347-0748'],
-        ['Troy Deeds','2027 New KIA Sportage Hybrid','Victor Napolillo','2026-10-13','new','','',0,0,'(434) 996-4706'],
-        ['Freddie Dempsey','2016 Used Ford Explorer','Rudy Escobar-Avila','2026-10-18','new','','',0,0,'(540) 525-2500'],
+        ['Keisha D','2016 Used Ford Explorer','Bob Borowski II','2026-10-14','working','','',0,0,'(434) 347-0748'],
+        ['Troy Deeds','2027 New KIA Sportage Hybrid','Victor Napolillo','2026-10-13','working','','',0,0,'(434) 996-4706'],
+        ['Freddie Dempsey','2016 Used Ford Explorer','Rudy Escobar-Avila','2026-10-18','working','','',0,0,'(540) 525-2500'],
         ['Amber Eisenhart','2016 Used Ford Explorer','Victor Napolillo','2026-10-18','new','','',0,0,'(434) 317-0292'],
         ['Tammi Ferguson','2026 New KIA EV9','Caleb Banaitis','2026-10-16','new','','',0,0,'(540) 204-7722'],
         ['Colleen Frahm','2026 New KIA Sorento','Nathan Billings','2026-10-12','new','','',0,0,'(757) 374-1606'],
         ['Michael Frank','2027 New KIA Sorento','Victor Napolillo','2026-10-15','new','','',0,0,'(540) 494-9037'],
         ['Jim Hamilton','2027 New KIA Sportage Hybrid','Victor Napolillo','2026-10-11','new','','',0,0,'(540) 473-1476'],
         ['Kristy Haythe','','Caleb Banaitis','2026-10-18','new','','',0,0,'(434) 382-7123'],
-        ['Claudia Hedrick','2023 New KIA Sportage','Bob Borowski II','2026-10-16','new','','',0,0,''],
+        ['Claudia Hedrick','2023 New KIA Sportage','Bob Borowski II','2026-10-16','working','','',0,0,''],
         ['Robert Hendrick','2027 New KIA Telluride','Nathan Billings','2026-10-15','new','','',0,0,'(434) 907-0094'],
         ['Janet Hostetter','2026 New KIA Sportage','Rudy Escobar-Avila','2026-10-11','new','','',0,0,'(540) 460-5804'],
-        ['Charnise Huggins','2027 New KIA Telluride','Bob Borowski II','2026-10-18','new','','',0,0,'(434) 426-0446'],
+        ['Charnise Huggins','2027 New KIA Telluride','Bob Borowski II','2026-10-18','working','','',0,0,'(434) 426-0446'],
         ['Brayden Huseonica','2026 New KIA K4','Bob Borowski II','2026-10-10','new','','',0,0,'(434) 856-6689'],
-        ['Mary Jackson','2027 New KIA Telluride','Chester Cook','2026-10-17','new','','',0,0,'(434) 841-7171'],
+        ['Mary Jackson','2027 New KIA Telluride','Chester Cook','2026-10-17','working','','',0,0,'(434) 841-7171'],
         ['Mary Johnson','2027 New KIA Telluride','Victor Napolillo','2026-10-17','new','','',0,0,'(540) 313-2876'],
         ['Daryl Johnson','2026 New KIA Sorento','Victor Napolillo','2026-10-14','new','','',0,0,'(540) 420-7528'],
         ['Lisa Jones','2026 New KIA EV6','Caleb Banaitis','2026-10-14','new','','',0,0,'(434) 709-6550'],
@@ -787,7 +788,7 @@
         ['Faheem Megginson','2024 Used Mazda Mazda3','Bob Borowski II','2026-10-17','appointment','Appointment','2026-10-19',0,30,'(434) 291-0101'],
         ['Helen Melunis','2026 New KIA Niro','Bob Borowski II','2026-10-11','new','','',0,0,'(434) 363-1788'],
         ['Elias Michael','2026 Used KIA Sorento','Rudy Escobar-Avila','2026-10-12','new','','',0,0,'(434) 455-7410'],
-        ['Jimmie Montgomery','2027 New KIA Sportage','Nathan Billings','2026-10-16','new','','',0,0,'(540) 618-7107'],
+        ['Jimmie Montgomery','2027 New KIA Sportage','Nathan Billings','2026-10-16','working','','',0,0,'(540) 618-7107'],
         ['Nikki Moshier','2027 New KIA Telluride','Nathan Billings','2026-10-10','new','No Show Call','2026-10-17',0,0,'(434) 575-0085'],
         ['Victor Napolillo','2026 Used KIA Sorento','Victor Napolillo','2026-10-12','new','','',0,0,'(434) 941-6095'],
         ['Donni Nicely','2026 New KIA Sorento','Victor Napolillo','2026-10-11','new','','',0,0,'(434) 610-9225'],
@@ -795,10 +796,10 @@
         ['James Parrish','2025 New KIA Soul','Victor Napolillo','2026-10-11','new','','',0,0,'(434) 420-0346'],
         ['Fabian Poindexter','','Caleb Banaitis','2026-10-14','new','','',0,0,'(434) 454-0150'],
         ['Samantha Ronk','2027 New KIA Telluride','Caleb Banaitis','2026-10-13','new','','',0,0,'(540) 797-5541'],
-        ['Randy Sheppard','2027 New KIA K5','Bob Borowski II','2026-10-18','new','Day 1 Email','2026-10-19',0,0,'(540) 239-4424'],
-        ['Greg Shumaker','2026 New KIA Carnival Hybrid','Rudy Escobar-Avila','2026-10-16','new','','',0,0,'(757) 533-1802'],
+        ['Randy Sheppard','2027 New KIA K5','Bob Borowski II','2026-10-18','working','Day 1 Email','2026-10-19',0,0,'(540) 239-4424'],
+        ['Greg Shumaker','2026 New KIA Carnival Hybrid','Rudy Escobar-Avila','2026-10-16','negotiation','','',0,0,'(757) 533-1802'],
         ['Oluwapelumi Sijuade','2027 New KIA K5','Nathan Billings','2026-10-15','new','','',0,0,''],
-        ['Janet Smith','2027 New KIA K4','Bob Borowski II','2026-10-13','new','Phone Follow Up','2026-10-19',0,0,'(540) 986-3874'],
+        ['Janet Smith','2027 New KIA K4','Bob Borowski II','2026-10-13','working','Phone Follow Up','2026-10-19',0,0,'(540) 986-3874'],
         ['Erika Sorto','2026 New KIA K5','Victor Napolillo','2026-10-17','new','','',0,0,'(540) 682-0923'],
         ['Paul Staffieri','2027 New KIA Telluride Hybrid','Nathan Billings','2026-10-12','new','','',0,0,'(732) 513-0518'],
         ['Tim Stover','2016 Used Ford Explorer','Victor Napolillo','2026-10-18','new','','',0,0,'(804) 466-8834'],
@@ -806,17 +807,17 @@
         ['Stephanie Thomas','','Bob Borowski II','2026-10-11','new','','',0,0,'(540) 263-8081'],
         ['Alexis Thomas','2027 New KIA Sorento Hybrid','Rudy Escobar-Avila','2026-10-13','new','','',0,0,'(434) 941-6451'],
         ['Darlene Thompson','2023 Used KIA Sportage','Rudy Escobar-Avila','2026-10-11','new','','',0,0,'(540) 294-0585'],
-        ['Danielle Thompson','2027 New KIA Seltos','Nathan Billings','2026-10-18','new','','',0,0,'(540) 450-9579'],
-        ['Catherine Trettin','2026 New KIA Niro','Nathan Billings','2026-10-18','new','','',0,0,'(443) 716-9102'],
+        ['Danielle Thompson','2027 New KIA Seltos','Nathan Billings','2026-10-18','working','','',0,0,'(540) 450-9579'],
+        ['Catherine Trettin','2026 New KIA Niro','Nathan Billings','2026-10-18','working','','',0,0,'(443) 716-9102'],
         ['Nikolai Utkin','2027 New KIA Sportage Hybrid','Caleb Banaitis','2026-10-17','new','','',0,0,'(801) 874-0869'],
         ['Meg Wassum','2027 New KIA Carnival Hybrid','Victor Napolillo','2026-10-10','new','','',0,0,'(804) 972-4041'],
-        ['Christopher Weber','2027 New KIA Telluride','Rudy Escobar-Avila','2026-10-15','new','','',0,0,''],
+        ['Christopher Weber','2027 New KIA Telluride','Rudy Escobar-Avila','2026-10-15','negotiation','','',0,0,''],
         ['David Webster','2027 New KIA Telluride','Victor Napolillo','2026-10-14','new','','',0,0,'(540) 400-2045'],
         ['Stephanie Whisman','2027 New KIA Seltos','Victor Napolillo','2026-10-16','new','','',0,0,'(540) 467-0453'],
         ['Stephanie Whisman','2027 New KIA Seltos','Victor Napolillo','2026-10-15','new','','',0,0,'(540) 467-0085'],
         ['Bruce Wood','2027 New KIA Telluride','Bob Borowski II','2026-10-12','new','','',0,0,'(540) 890-5554'],
         ['Denise Wood','','Victor Napolillo','2026-10-15','new','','',0,0,'(434) 942-1771'],
-        ['Mary Wright','2027 New KIA Carnival Hybrid','Nathan Billings','2026-10-15','new','','',0,0,'(540) 588-8093'],
+        ['Mary Wright','2027 New KIA Carnival Hybrid','Nathan Billings','2026-10-15','working','','',0,0,'(540) 588-8093'],
         ['Blake Yates','2026 New KIA K4','Caleb Banaitis','2026-10-15','new','','',0,0,'(352) 931-2806']
       ];
       var leads=RAW.map(function(r){
