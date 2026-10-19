@@ -265,6 +265,27 @@
       #team .split-grid>.card{min-width:0}
     }
   </style>
+  <style>
+    /* Overview on wide monitors: lock the four KPI cards into a 2×2 grid that
+       stretches to fill the full viewport height between the tabs and the
+       footer note, so no dead space sits below the cards. Other views and
+       narrow widths keep their existing layouts. */
+    @media (min-width:1280px){
+      .shell{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+      #overview.active{display:flex;flex-direction:column;flex:1 1 auto}
+      #overview .metrics{flex:1 1 auto;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}
+      #overview .metric{display:flex;flex-direction:column;justify-content:space-between;min-height:0}
+      #overview .units-summary{display:flex;flex-direction:column;justify-content:space-between;flex:1 1 auto;min-height:0}
+      #overview .metric-units.is-split .units-summary{display:none}
+      #overview .metric-units.is-split .units-breakdown{display:flex;flex-direction:column;justify-content:space-between;flex:1 1 auto;min-height:0}
+      #overview .updated-line{flex:0 0 auto}
+    }
+    @media (min-width:1280px) and (min-height:1080px){
+      #overview .metric-value{font-size:clamp(52px,3.9vw,76px)}
+      #overview .metric-total .metric-value,#overview .metric-new .metric-value{font-size:clamp(42px,3.3vw,64px)}
+      #overview .metric-used .metric-value{font-size:clamp(40px,3.1vw,60px)}
+    }
+  </style>
 </head>
 <body>
   <main class="shell">
