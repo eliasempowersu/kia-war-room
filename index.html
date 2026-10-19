@@ -286,6 +286,11 @@
       #overview .metric-used .metric-value{font-size:clamp(40px,3.1vw,60px)}
     }
   </style>
+  <style>
+    /* Summary + headline inventory cards (New & Used pages) */
+    .sum-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    @media(max-width:620px){.sum-grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
   <main class="shell">
@@ -350,6 +355,14 @@
 
     <section id="new" class="view">
       <div class="split-grid">
+        <article class="card card-pad span-12">
+          <div class="card-head"><div><span class="section-label">Summary · October MTD</span><h2 class="card-title">New at a glance</h2></div><span class="tap">SALES LOG · THROUGH OCT 19</span></div>
+          <div class="sum-grid">
+            <div class="health"><span class="health-num warning">$13,310.71</span><span class="health-label">MTD new gross</span></div>
+            <div class="health"><span class="health-num positive">+$797</span><span class="health-label">Avg front per deal · 7 deals</span></div>
+            <div class="health"><span class="health-num">0</span><span class="health-label">Deals working · LEADS pipeline · Oct 19</span></div>
+          </div>
+        </article>
         <article class="card card-pad span-7 clickable" tabindex="0" role="button" data-topic="target">
           <div class="card-head"><div><span class="section-label">Manufacturer target · October</span><h2 class="card-title">25 new for the month</h2></div><span class="tap">TAP TO PLAN →</span></div>
           <div class="metric-value warning">7 <span style="font-size:.42em;color:var(--muted);letter-spacing:0">/ 25 new</span></div>
@@ -358,17 +371,15 @@
           <div class="goal-row" style="margin-top:8px"><span>Pace: 12</span><span>Need ≈1.6 / day from here</span></div>
         </article>
         <article class="card card-pad span-5">
-          <span class="section-label">Stair-step to 60</span>
-          <h2 class="card-title">Climb it a step at a time.</h2>
-          <div class="stair"><div class="stair-top"><span class="stair-num" style="color:var(--muted)">13</span><span class="stair-label">September · sold</span></div><div class="stair-track"><span style="width:22%;background:var(--muted)"></span></div></div>
-          <div class="stair"><div class="stair-top"><span class="stair-num warning">25</span><span class="stair-label">October · manufacturer target</span></div><div class="stair-track"><span style="width:42%;background:var(--amber)"></span></div></div>
-          <div class="stair"><div class="stair-top"><span class="stair-num positive">60</span><span class="stair-label">Objective · top step</span></div><div class="stair-track"><span style="width:100%;background:var(--lime)"></span></div></div>
-          <p class="stair-note">13 new last month — 60 is where the stairs lead, not this month’s expectation. October's step is 25.</p>
+          <div class="card-head"><div><span class="section-label">Inventory health</span><h2 class="card-title">New lot</h2></div><span class="tap">DEALERSLINK · OCT 19</span></div>
+          <div class="metric-value">123</div>
+          <span class="metric-sub">New units in stock</span>
         </article>
         <article class="card card-pad span-12">
           <div class="card-head"><div><span class="section-label">New-car deals</span><h2 class="card-title">Every new deal · front &amp; back</h2></div><span class="tap">7 UNITS · $13,310.71</span></div>
           <div class="deal-list">
             <div class="deal deal4 deal-head" aria-hidden="true"><div>DEAL</div><div class="deal-num">FRONT</div><div class="deal-num">BACK</div><div class="deal-num">TOTAL</div></div>
+            <div class="deal deal4 deal-total"><div><div class="deal-title">New total · 7 units</div><div class="deal-meta">AVG +$1,902 PER UNIT</div></div><div class="deal-num positive" data-label="FRONT">+$5,578</div><div class="deal-num positive" data-label="BACK">+$7,732.71</div><div class="deal-num positive" data-label="TOTAL">+$13,310.71</div></div>
             <div class="deal deal4"><div><div class="deal-title">Douglass — 2027 Seltos</div><div class="deal-meta">BOB · 10/12 · CASH DEAL</div></div><div class="deal-num positive" data-label="FRONT">+$1,372</div><div class="deal-num" data-label="BACK">$0</div><div class="deal-num positive" data-label="TOTAL">+$1,372</div></div>
             <div class="deal deal4"><div><div class="deal-title">Aviles — 2026 Carnival</div><div class="deal-meta">KL6604 · BOB / NATHAN · 10/8</div></div><div class="deal-num positive" data-label="FRONT">+$470</div><div class="deal-num" data-label="BACK">$0</div><div class="deal-num positive" data-label="TOTAL">+$470</div></div>
             <div class="deal deal4"><div><div class="deal-title">Bienkowski — 2027 Sportage HEV</div><div class="deal-meta">KL1481 · VICTOR / RUDY · 10/8</div></div><div class="deal-num positive" data-label="FRONT">+$2,020</div><div class="deal-num positive" data-label="BACK">+$3,301</div><div class="deal-num positive" data-label="TOTAL">+$5,321</div></div>
@@ -376,7 +387,6 @@
             <div class="deal deal4"><div><div class="deal-title">Callands — 2027 Telluride</div><div class="deal-meta">KL1482 · BOB · 10/16</div></div><div class="deal-num negative" data-label="FRONT">−$126</div><div class="deal-num" data-label="BACK">$0</div><div class="deal-num negative" data-label="TOTAL">−$126</div></div>
             <div class="deal deal4"><div><div class="deal-title">Cash — 2026 K5</div><div class="deal-meta">KL6742 · CALEB · 10/17</div></div><div class="deal-num positive" data-label="FRONT">+$752</div><div class="deal-num positive" data-label="BACK">+$1,784</div><div class="deal-num positive" data-label="TOTAL">+$2,536</div></div>
             <div class="deal deal4"><div><div class="deal-title">Weatherford — 2027 Seltos</div><div class="deal-meta">KL6782 · RUDY · 10/17</div></div><div class="deal-num positive" data-label="FRONT">+$828</div><div class="deal-num positive" data-label="BACK">+$2,348</div><div class="deal-num positive" data-label="TOTAL">+$3,176</div></div>
-            <div class="deal deal4 deal-total"><div><div class="deal-title">New total · 7 units</div><div class="deal-meta">AVG +$1,902 PER UNIT</div></div><div class="deal-num positive" data-label="FRONT">+$5,578</div><div class="deal-num positive" data-label="BACK">+$7,732.71</div><div class="deal-num positive" data-label="TOTAL">+$13,310.71</div></div>
           </div>
         </article>
       </div>
@@ -384,6 +394,22 @@
 
     <section id="used" class="view">
       <div class="split-grid">
+        <article class="card card-pad span-12">
+          <div class="card-head"><div><span class="section-label">Summary · October MTD</span><h2 class="card-title">Used at a glance</h2></div><span class="tap">SALES LOG · THROUGH OCT 19</span></div>
+          <div class="sum-grid">
+            <div class="health"><span class="health-num" style="color:var(--blue)">$3,827.70</span><span class="health-label">MTD used gross</span></div>
+            <div class="health"><span class="health-num negative">−$538</span><span class="health-label">Avg front per deal · 14 deals</span></div>
+            <div class="health"><span class="health-num">2</span><span class="health-label">Deals working · LEADS pipeline · Oct 19</span></div>
+          </div>
+        </article>
+        <article class="card card-pad span-12">
+          <div class="card-head"><div><span class="section-label">Inventory health</span><h2 class="card-title">Used lot at a glance</h2></div><span class="tap">DEALERSLINK · OCT 19</span></div>
+          <div class="sum-grid">
+            <div class="health"><span class="health-num">22</span><span class="health-label">Used units in stock</span></div>
+            <div class="health"><span class="health-num">58 days</span><span class="health-label">Avg age in stock</span></div>
+            <div class="health"><span class="health-num warning">214 days</span><span class="health-label">Oldest unit on the lot</span></div>
+          </div>
+        </article>
         <article class="card card-pad span-12">
           <div class="card-head"><div><span class="section-label">Inventory health</span><h2 class="card-title">Used lot snapshot</h2></div><span class="tap">DEALERSLINK · OCT 13</span></div>
           <div class="health-grid">
@@ -403,6 +429,7 @@
           <div class="card-head"><div><span class="section-label">Used-car deals</span><h2 class="card-title">Every used deal · front &amp; back</h2></div><span class="tap">TOP 2 = 95% OF FRONT LOSS</span></div>
           <div class="deal-list">
             <div class="deal deal4 deal-head" aria-hidden="true"><div>DEAL</div><div class="deal-num">FRONT</div><div class="deal-num">BACK</div><div class="deal-num">TOTAL</div></div>
+            <div class="deal deal4 deal-total"><div><div class="deal-title">Used total · 14 units</div><div class="deal-meta">FRONT −$7,533.65 · BACK +$11,361.35</div></div><div class="deal-num negative" data-label="FRONT">−$7,533.65</div><div class="deal-num positive" data-label="BACK">+$11,361.35</div><div class="deal-num positive" data-label="TOTAL">+$3,827.70</div></div>
             <div class="deal deal4" tabindex="0" role="button" data-topic="hughes"><div><div class="deal-title">Hughes — CPO Telluride</div><div class="deal-meta">2024 KIA CPO TELLURIDE · VICTOR · 10/12</div></div><div class="deal-num negative" data-label="FRONT">−$3,850</div><div class="deal-num" data-label="BACK">$0</div><div class="deal-num negative" data-label="TOTAL">−$3,850</div></div>
             <div class="deal deal4" tabindex="0" role="button" data-topic="sorento"><div><div class="deal-title">Cianchetta — 2023 Sorento</div><div class="deal-meta">KL6523A · DEAL 219773 · RUDY · 10/5 · 112 DAYS</div></div><div class="deal-num negative" data-label="FRONT">−$3,289</div><div class="deal-num positive" data-label="BACK">+$995</div><div class="deal-num negative" data-label="TOTAL">−$2,295</div></div>
             <div class="deal deal4" tabindex="0" role="button" data-topic="sportage"><div><div class="deal-title">Neal — 2023 Sportage HEV</div><div class="deal-meta">KLP4691A · DEAL 219783 · NATHAN · 10/9</div></div><div class="deal-num negative" data-label="FRONT">−$2,454</div><div class="deal-num" data-label="BACK">$0</div><div class="deal-num negative" data-label="TOTAL">−$2,454</div></div>
@@ -417,7 +444,6 @@
             <div class="deal deal4" tabindex="0" role="button" data-topic="optima"><div><div class="deal-title">Godsey — Optima</div><div class="deal-meta">CALEB · 10/5</div></div><div class="deal-num positive" data-label="FRONT">+$1,136</div><div class="deal-num positive" data-label="BACK">+$1,731</div><div class="deal-num positive" data-label="TOTAL">+$2,867</div></div>
             <div class="deal deal4"><div><div class="deal-title">Belony — 2022 Toyota Corolla</div><div class="deal-meta">KL1474B · RUDY · 10/13</div></div><div class="deal-num positive" data-label="FRONT">+$1,230</div><div class="deal-num positive" data-label="BACK">+$1,115</div><div class="deal-num positive" data-label="TOTAL">+$2,345</div></div>
             <div class="deal deal4"><div><div class="deal-title">Lovern — 2017 Niro</div><div class="deal-meta">KL6765A · VICTOR · 10/17</div></div><div class="deal-num positive" data-label="FRONT">+$1,343</div><div class="deal-num" data-label="BACK">$0</div><div class="deal-num positive" data-label="TOTAL">+$1,343</div></div>
-            <div class="deal deal4 deal-total"><div><div class="deal-title">Used total · 14 units</div><div class="deal-meta">FRONT −$7,533.65 · BACK +$11,361.35</div></div><div class="deal-num negative" data-label="FRONT">−$7,533.65</div><div class="deal-num positive" data-label="BACK">+$11,361.35</div><div class="deal-num positive" data-label="TOTAL">+$3,827.70</div></div>
           </div>
         </article>
       </div>
@@ -460,12 +486,12 @@
   <script>
     (function(){
       var briefs={
-        volume:{title:'Volume position',insight:'Twenty-one total units are posted through day sixteen: seven new and fourteen used.',brief:'CURRENT POSITION\n21 total units through day 16 of 27: 7 new and 14 used. October’s manufacturer target is 25 new — 18 remaining — one step on the stair-step climb toward the 60 objective.\n\nMANAGER FOCUS\nSet a named owner for the next appointment, identify the new unit to move today, and check progress again at noon.'},
+        volume:{title:'Volume position',insight:'Twenty-one total units are posted through day sixteen: seven new and fourteen used.',brief:'CURRENT POSITION\n21 total units through day 16 of 27: 7 new and 14 used. October’s manufacturer target is 25 new — 18 remaining.\n\nMANAGER FOCUS\nSet a named owner for the next appointment, identify the new unit to move today, and check progress again at noon.'},
         gross:{title:'Store gross position',insight:'The board shows $17,138.41 total gross, or $816 per unit.',brief:'CURRENT POSITION\n21 units produced $17,138.41 total gross, averaging $816 per unit. Front gross is −$1,955.65; back gross is +$19,094.06.\n\nMANAGER FOCUS\nProtect used front gross before the first pencil while preserving a complete finance presentation on every deal.'},
-        new:{title:'New-car gross',insight:'Seven new units produced $13,310.71 total gross, averaging $1,902 each.',brief:'CURRENT POSITION\n7 new units produced $13,310.71 total gross: +$5,578 front and +$7,732.71 back. Average total gross is $1,902 per new unit.\n\nMANAGER FOCUS\nOctober’s manufacturer target is 25 new — 18 remain — on the stair-step toward the 60 objective. Tie each daily checkpoint to a named appointment, a named unit, and an owner.'},
+        new:{title:'New-car gross',insight:'Seven new units produced $13,310.71 total gross, averaging $1,902 each.',brief:'CURRENT POSITION\n7 new units produced $13,310.71 total gross: +$5,578 front and +$7,732.71 back. Average total gross is $1,902 per new unit.\n\nMANAGER FOCUS\nOctober’s manufacturer target is 25 new — 18 remain. Tie each daily checkpoint to a named appointment, a named unit, and an owner.'},
         used:{title:'Used-car gross',insight:'Fourteen used units produced $3,827.70 total gross. Back-end gross is still carrying a heavy front-end loss.',brief:'CURRENT POSITION\n14 used units produced $3,827.70 total gross. Used front is −$7,533.65 while used back is +$11,361.35.\n\nMANAGER FOCUS\nReview front gross before numbers leave the tower, lock the real trade ACV first, price aged units to market, and complete the finance presentation.'},
         bleed:{title:'Used front: priority one',insight:'Two deals account for 95% of the net used front loss: the Hughes CPO Telluride at −$3,850 front with $0 back, and the 112-day Sorento at −$3,289 front.',brief:'WHAT DROVE THE LOSS\nUsed front is −$7,533.65 across 14 deals. Two deals created 95% of that net loss: Hughes 2024 CPO Telluride at −$3,850 front with $0 back, and KL6523A 2023 Sorento at −$3,289 front.\n\nCONTROL\nRequire manager review of front gross and trade ACV before customer numbers leave the tower.'},
-        target:{title:'Manufacturer target: 25 new',insight:'Seven new are posted against October’s manufacturer target of 25. The 60 objective is the top of the stair-step, not this month’s expectation.',brief:'CURRENT POSITION\n7 of 25 new are posted through day 16 of 27 selling days — 28% of the manufacturer target, with 18 remaining. Current pace is 12; landing on 25 takes about 1.6 new per day from here.\n\nSTAIR-STEP TO 60\nSeptember actual: 13 new. October step: 25 (manufacturer target). Top step: the 60 objective. Climb one step at a time — 60 was never the expectation the month after 13.\n\nDAILY CADENCE\nStart with named appointments and target units, identify deals needing early manager involvement, and hold a noon accountability check.'},
+        target:{title:'Manufacturer target: 25 new',insight:'Seven new are posted against October’s manufacturer target of 25, with 18 remaining and 11 selling days left.',brief:'CURRENT POSITION\n7 of 25 new are posted through day 16 of 27 selling days — 28% of the manufacturer target, with 18 remaining. Current pace is 12; landing on 25 takes about 1.6 new per day from here.\n\nDAILY CADENCE\nStart with named appointments and target units, identify deals needing early manager involvement, and hold a noon accountability check.'},
         pace:{title:'Month front-gross pace',insight:'Front gross is −$1,955.65 through day sixteen, projecting to approximately −$3,300 over 27 selling days if the current pace holds.',brief:'CURRENT POSITION\nFront gross is −$1,955.65 through day 16. A straight-line 27-day projection is approximately −$3,300 if the pace does not change.\n\nMANAGER FOCUS\nUse daily checkpoints on trade ACV, aged inventory, and used front gross rather than waiting for the month-end result.'},
         mix:{title:'Front vs. back mix',insight:'Used back gross of $11,361.35 is absorbing a −$7,533.65 used front. That leaves +$3,827.70 used total gross.',brief:'GROSS MIX\nUsed front: −$7,533.65. Used back: +$11,361.35. Used total: +$3,827.70 across 14 deals. Back-end performance is now covering the front-end loss.\n\nMANAGER FOCUS\nSet the front-gross position before the pencil and ensure every deal receives a complete finance presentation.'},
         leaderboard:{title:'Team board — units first',insight:'Rudy leads units at 6 and gross at $9,331. Units are the headline — gross is the footnote.',brief:'TEAM POSITION (UNITS · FRONT · BACK · TOTAL)\nRudy: 6 units · front +$919.22 · back +$8,412.26 · total $9,331.48\nCaleb: 4.5 units · front +$1,717.05 · back +$4,420.59 · total $6,137.64\nVictor: 3.5 units · front −$831.41 · back +$3,301.00 · total $2,469.59\nBob: 3.5 units · front −$208.51 · back +$2,660.21 · total $2,451.70\nNathan: 3.5 units · front −$3,552.00 · back +$300.00 · total −$3,252.00\n\nCOACHING USE\nReview process and deal structure privately. Use the board to identify support needs, not to rank effort or assign blame.'},
