@@ -300,7 +300,11 @@
     .health-table td:first-child{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:16px;font-weight:600}
     .health-table tbody tr:last-child td{border-bottom:0}
     .health-table .health-total td{border-top:2px solid var(--line);color:var(--cyan)}
-    @media(max-width:620px){.health-table th,.health-table td{padding:9px 6px}.health-table td{font-size:13px}.health-table td:first-child{font-size:14px}}
+    .age-dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:9px;vertical-align:baseline}
+    .age-dot.fresh{background:var(--lime)}
+    .age-dot.mid{background:var(--amber)}
+    .age-dot.old{background:var(--red)}
+    @media(max-width:620px){.health-table th,.health-table td{padding:9px 6px}.health-table td{font-size:13px}.health-table td:first-child{font-size:14px}.age-dot{width:8px;height:8px;margin-right:6px}}
   </style>
   <style>
     /* LEADS snapshot view (Project Resurrection) */
@@ -531,9 +535,9 @@
           <table class="health-table">
             <thead><tr><th scope="col">Age</th><th scope="col">Units</th><th scope="col">Avg Investment</th><th scope="col">Investment</th></tr></thead>
             <tbody>
-              <tr><td>Under 30 Days</td><td>12</td><td>$17,568</td><td>$210,810</td></tr>
-              <tr><td>30 Days – 60 Days</td><td>2</td><td>$19,905</td><td>$39,810</td></tr>
-              <tr><td>Over 60 Days</td><td>12</td><td>$27,330</td><td>$327,957</td></tr>
+              <tr><td><span class="age-dot fresh" aria-hidden="true"></span>Under 30 Days</td><td>12</td><td>$17,568</td><td>$210,810</td></tr>
+              <tr><td><span class="age-dot mid" aria-hidden="true"></span>30 Days – 60 Days</td><td>2</td><td>$19,905</td><td>$39,810</td></tr>
+              <tr><td><span class="age-dot old" aria-hidden="true"></span>Over 60 Days</td><td>12</td><td>$27,330</td><td>$327,957</td></tr>
               <tr class="health-total"><td>All Units</td><td>26</td><td>$22,253</td><td>$578,577</td></tr>
             </tbody>
           </table>
