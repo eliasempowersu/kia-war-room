@@ -332,6 +332,7 @@
     .stage-chip.working{border-color:var(--cyan);color:var(--cyan)}
     .stage-chip.appointment{border-color:var(--amber);color:var(--amber)}
     .lead-detail{grid-column:1/-1;display:none;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:12px 14px;font:500 12px/1.7 "IBM Plex Mono",monospace;color:var(--muted)}
+    .lead-detail .ld i{font-style:normal}
     .lead-detail strong{color:var(--text)}
     .lead-row.open .lead-detail{display:block}
     .lead-empty{padding:26px 12px;color:var(--muted);font-size:15px;text-align:center}
@@ -348,6 +349,50 @@
       .lead-row .lead-cell::before{content:attr(data-label);display:block;color:var(--muted);font:600 8.5px/1.3 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
       .sp-name{font-size:14px}
       .sp-row>span:not(:first-child){font-size:13px}
+    }
+  </style>
+  <style>
+    /* LEADS view — compact phone layout (≤480px only). Desktop/tablet and all
+       other views keep the layouts above, unchanged. Rows become tight
+       3-line items: name + stage pill + date / vehicle / rep · step · due. */
+    @media (max-width:480px){
+      /* Compressed LEADS header stack so the list starts higher */
+      #leads .snapshot-note{font-size:10px;margin-bottom:10px}
+      #leads .lead-metrics{gap:10px;margin-bottom:12px}
+      #leads .lead-metrics .card-pad{padding:14px 16px}
+      #leads .lead-big{font-size:36px;margin:10px 0 6px}
+      #leads .lead-metrics .metric-sub{font-size:12px;line-height:1.3}
+      #leads .split-grid{gap:12px}
+      #leads .card-head{margin-bottom:12px}
+      #leads .card-title{font-size:20px}
+      #leads .card-head .tap{display:none}
+      #leads .stage-card{padding:10px 12px}
+      #leads .stage-card .sc-count{font-size:26px;margin-top:5px}
+      #leads .sp-head,#leads .sp-row{padding-top:7px;padding-bottom:7px}
+      #leads .lead-controls{gap:8px;margin-bottom:2px}
+      #leads .week-select{width:100%;padding:8px 10px}
+      #leads .lead-count-line{font-size:10px}
+      /* Compact 3-line lead rows */
+      #leads .lead-row{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px;row-gap:2px;padding:10px 12px}
+      #leads .lead-row .lead-cell::before{display:none}
+      #leads .c-name{order:1;flex:1 1 auto;min-width:0}
+      #leads .lead-name{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      #leads .c-stage{order:2;flex:0 0 auto;text-align:right}
+      #leads .stage-chip{padding:3px 8px;font-size:9px}
+      #leads .c-date{order:3;flex:0 0 auto;font-size:12px;white-space:nowrap}
+      #leads .c-veh{order:4;flex:1 1 100%;min-width:0;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      #leads .c-rep{order:5;flex:0 1 auto;min-width:0;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      #leads .c-rep::after{content:" · "}
+      #leads .c-next{order:6;flex:0 0 auto;font-size:12px;color:var(--muted);white-space:nowrap}
+      #leads .c-next .due{display:inline;margin:0;font:inherit;text-transform:capitalize}
+      #leads .c-next .due::before{content:" · "}
+      /* Expanded detail: two-column label / value rows */
+      #leads .lead-detail{order:7;flex:1 1 100%;margin-top:8px}
+      #leads .lead-row.open .lead-detail{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 14px;padding:11px 12px;font-size:11px;line-height:1.45}
+      #leads .lead-detail .ld{display:contents}
+      #leads .lead-detail .ld i{font:600 9px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em;color:var(--muted);align-self:center;white-space:nowrap}
+      #leads .lead-detail .ld strong{font-size:12px;font-weight:600;min-width:0}
+      #leads .lead-detail .ld-sep,#leads .lead-detail br{display:none}
     }
   </style>
 </head>
@@ -866,7 +911,16 @@
             +'<span class="lead-cell c-veh" data-label="Vehicle">'+esc(l.vehicle||'—')+'</span>'
             +'<span class="lead-cell c-rep" data-label="Salesperson">'+esc(l.rep)+'</span>'
             +'<span class="lead-cell c-next" data-label="Next step">'+esc(l.task)+'<span class="due">DUE '+fmtD(l.due).toUpperCase()+'</span></span>'
-            +'<span class="lead-detail">NEXT STEP <strong>'+esc(l.task)+'</strong> · DUE <strong>'+esc(fmtDFull(l.due))+'</strong><br>PHONE <strong>'+esc(l.phone||'—')+'</strong> · TOUCHES <strong>'+l.touches+'</strong> · ENGAGEMENT SCORE <strong>'+l.score+'</strong><br>DATE IN <strong>'+esc(fmtDFull(l.dateIn))+'</strong> · STAGE <strong>'+esc(stageShort[l.stage])+'</strong> · SALESPERSON <strong>'+esc(l.rep)+'</strong></span>'
+            +'<span class="lead-detail">'
+            +'<span class="ld"><i>NEXT STEP </i><strong>'+esc(l.task)+'</strong></span><span class="ld-sep"> · </span>'
+            +'<span class="ld"><i>DUE </i><strong>'+esc(fmtDFull(l.due))+'</strong></span><br>'
+            +'<span class="ld"><i>PHONE </i><strong>'+esc(l.phone||'—')+'</strong></span><span class="ld-sep"> · </span>'
+            +'<span class="ld"><i>TOUCHES </i><strong>'+l.touches+'</strong></span><span class="ld-sep"> · </span>'
+            +'<span class="ld"><i>ENGAGEMENT SCORE </i><strong>'+l.score+'</strong></span><br>'
+            +'<span class="ld"><i>DATE IN </i><strong>'+esc(fmtDFull(l.dateIn))+'</strong></span><span class="ld-sep"> · </span>'
+            +'<span class="ld"><i>STAGE </i><strong>'+esc(stageShort[l.stage])+'</strong></span><span class="ld-sep"> · </span>'
+            +'<span class="ld"><i>SALESPERSON </i><strong>'+esc(l.rep)+'</strong></span>'
+            +'</span>'
             +'</div>';
         });
         listEl.innerHTML=html;
