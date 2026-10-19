@@ -304,6 +304,12 @@
     .age-dot.fresh{background:var(--lime)}
     .age-dot.mid{background:var(--amber)}
     .age-dot.old{background:var(--red)}
+    /* Top-three placement markers on the units-first team ranking */
+    .place-dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;vertical-align:baseline}
+    .place-dot.first{background:var(--lime)}
+    .place-dot.second{background:var(--amber)}
+    .place-dot.third{background:var(--red)}
+    @media(max-width:620px){.place-dot{width:8px;height:8px;margin-right:6px}}
     @media(max-width:620px){.health-table th,.health-table td{padding:9px 6px}.health-table td{font-size:13px}.health-table td:first-child{font-size:14px}.age-dot{width:8px;height:8px;margin-right:6px}}
   </style>
   <style>
@@ -572,9 +578,9 @@
         <article class="card card-pad span-12 clickable" tabindex="0" role="button" aria-label="Open the team planning brief" data-topic="leaderboard">
           <div class="card-head"><div><span class="section-label">Team board · ranked by units</span><h2 class="card-title">Units first</h2></div><span class="tap">TAP TO PLAN →</span></div>
           <div class="rep-list">
-            <div class="rep rep2"><span class="rank">01</span><div><strong>Rudy</strong><small>Front +$919 · Back +$8,412 · $1,555 per unit</small></div><span class="rep-units">6<small>UNITS</small></span><span class="rep-total positive">$9,331</span></div>
-            <div class="rep rep2"><span class="rank">02</span><div><strong>Caleb</strong><small>Front +$1,717 · Back +$4,421 · $1,364 per unit</small></div><span class="rep-units">4.5<small>UNITS</small></span><span class="rep-total">$6,138</span></div>
-            <div class="rep rep2"><span class="rank">03</span><div><strong>Nathan</strong><small>Front −$6,925 · Back +$300 · −$1,472 per unit</small></div><span class="rep-units">4.5<small>UNITS</small></span><span class="rep-total negative">−$6,625</span></div>
+            <div class="rep rep2"><span class="rank"><span class="place-dot first" aria-hidden="true"></span>01</span><div><strong>Rudy</strong><small>Front +$919 · Back +$8,412 · $1,555 per unit</small></div><span class="rep-units">6<small>UNITS</small></span><span class="rep-total positive">$9,331</span></div>
+            <div class="rep rep2"><span class="rank"><span class="place-dot second" aria-hidden="true"></span>02</span><div><strong>Caleb</strong><small>Front +$1,717 · Back +$4,421 · $1,364 per unit</small></div><span class="rep-units">4.5<small>UNITS</small></span><span class="rep-total">$6,138</span></div>
+            <div class="rep rep2"><span class="rank"><span class="place-dot third" aria-hidden="true"></span>03</span><div><strong>Nathan</strong><small>Front −$6,925 · Back +$300 · −$1,472 per unit</small></div><span class="rep-units">4.5<small>UNITS</small></span><span class="rep-total negative">−$6,625</span></div>
             <div class="rep rep2"><span class="rank">04</span><div><strong>Victor</strong><small>Front −$831 · Back +$3,301 · $706 per unit</small></div><span class="rep-units">3.5<small>UNITS</small></span><span class="rep-total">$2,470</span></div>
             <div class="rep rep2"><span class="rank">05</span><div><strong>Bob</strong><small>Front −$209 · Back +$2,660 · $700 per unit</small></div><span class="rep-units">3.5<small>UNITS</small></span><span class="rep-total">$2,452</span></div>
           </div>
