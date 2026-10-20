@@ -440,20 +440,8 @@
     .tile-cap{display:block;margin-top:5px;color:var(--muted);font-size:11px;line-height:1.3}
     .tile-frac{font-size:.62em;color:var(--muted);letter-spacing:0;font-weight:600}
     .tile-target .tile-label{font-size:8px;letter-spacing:.02em}
-    /* USED glance: all six figures in ONE compact row so the glance and the
-       Used Health Report share one phone screen */
-    .tile-grid.row6{grid-template-columns:repeat(6,minmax(0,1fr));gap:3px}
-    .tile-grid.row6 .tile{padding:7px 4px 8px;border-radius:9px}
-    .tile-grid.row6 .tile-label{font-size:7px;letter-spacing:.03em;line-height:1.3}
-    .tile-grid.row6 .tile-num{font-size:15px;margin-top:4px}
-    .tile-grid.row6 .tile-num.sm,.tile-grid.row6 .tile-num.money,.tile-grid.row6 .tile-num.days{font-size:10px;letter-spacing:-.03em}
-    @media(min-width:621px){
-      .tile-grid.row6{gap:6px}
-      .tile-grid.row6 .tile{padding:10px 9px 11px}
-      .tile-grid.row6 .tile-label{font-size:8.5px;letter-spacing:.06em}
-      .tile-grid.row6 .tile-num{font-size:23px}
-      .tile-grid.row6 .tile-num.sm,.tile-grid.row6 .tile-num.money,.tile-grid.row6 .tile-num.days{font-size:16px}
-    }
+    /* USED glance uses the same standard 2 rows × 3 tile grid as BLL and the
+       NEW glance above — no squeezed one-row variant */
     .tile.clickable{cursor:pointer}
     .tile.clickable:hover,.tile.clickable:focus-visible{border-color:var(--cyan);outline:none}
     .glance-line{margin:11px 0 0;color:var(--muted);font:600 11px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
@@ -473,10 +461,8 @@
       .tile-num{margin-top:5px}
       .glance-line{margin-top:8px}
       #new .card-head,#used .card-head{margin-bottom:12px}
-      /* USED phone fit: source tags yield their width so card titles take one
-         line and the glance + Health Report share the first screen */
-      #used .card-head .tap{display:none}
-      #used .card-head{margin-bottom:10px}
+      /* USED phone fit: keep the source tag visible like the other views;
+         the glance-line note steps down so it wraps cleanly under the grid */
       .glance-note{font-size:10px;letter-spacing:.05em}
       .inv-card{padding:13px 12px}
       .inv-top{min-height:27px}
@@ -548,7 +534,7 @@
           <span class="tap">TAP TO ZOOM ›</span>
         </article>
       </div>
-      <p class="updated-line" id="updatedLine">FIGURES FROM THE OCTOBER 2026 KIA SALES LOG · THROUGH OCT 20 · 5 PM REFRESH · TAP LIVE TO REFRESH</p>
+      <p class="updated-line" id="updatedLine">FIGURES FROM THE OCTOBER 2026 KIA SALES LOG · THROUGH OCT 20 · 7 PM REFRESH · TAP LIVE TO REFRESH</p>
     </section>
 
     <section id="new" class="view">
@@ -588,7 +574,7 @@
       <div class="split-grid">
         <article class="card card-pad span-12">
           <div class="card-head"><div><span class="section-label">Summary · October MTD</span><h2 class="card-title">Used at a glance</h2></div><span class="tap">SALES LOG · THROUGH OCT 20</span></div>
-          <div class="tile-grid row6">
+          <div class="tile-grid">
             <div class="tile"><span class="tile-label">Used units sold</span><span class="tile-num c-blue">15</span></div>
             <div class="tile"><span class="tile-label">MTD used gross</span><span class="tile-num c-green money">$454.59</span></div>
             <div class="tile"><span class="tile-label">Avg front per deal</span><span class="tile-num negative">−$727</span></div>
