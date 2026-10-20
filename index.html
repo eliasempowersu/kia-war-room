@@ -237,6 +237,9 @@
       .deal.deal4 .deal-num{text-align:left}
       .deal.deal4 .deal-num::before{content:attr(data-label);display:block;color:var(--muted);font:600 8.5px/1.2 "IBM Plex Mono",monospace;letter-spacing:.08em;margin-bottom:3px}
       .deal-head{display:none}
+      /* New deals total: the 17px total figure (+$13,310.71) overflows its
+         third-width column at phone widths — step it down so it fits in full */
+      .deal-total .deal-num:last-child{font-size:13.5px;letter-spacing:-.02em}
       .health-grid{grid-template-columns:repeat(2,1fr)}
       .rep2{grid-template-columns:30px minmax(0,1fr) auto;gap:10px}
       .rep2 .rep-total{grid-column:2/-1;text-align:left}
@@ -436,7 +439,7 @@
     .tile-num.days{font-size:clamp(16px,4.4vw,23px);letter-spacing:-.02em}
     .tile-cap{display:block;margin-top:5px;color:var(--muted);font-size:11px;line-height:1.3}
     .tile-frac{font-size:.62em;color:var(--muted);letter-spacing:0;font-weight:600}
-    .tile-target .tile-label{font-size:8.8px;letter-spacing:.05em}
+    .tile-target .tile-label{font-size:8px;letter-spacing:.02em}
     /* USED glance: all six figures in ONE compact row so the glance and the
        Used Health Report share one phone screen */
     .tile-grid.row6{grid-template-columns:repeat(6,minmax(0,1fr));gap:3px}
