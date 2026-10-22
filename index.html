@@ -337,7 +337,7 @@
     .stage-card[data-stage="negotiation"] .sc-count{color:var(--gold)}
     .stage-card[data-stage="appointment"] .sc-count{color:var(--blue)}
     .stage-card[data-stage="sold"] .sc-count{color:var(--lime)}
-    .sp-head,.sp-row{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(7,minmax(0,.55fr));gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+    .sp-head,.sp-row{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(6,minmax(0,.55fr));gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
     .sp-head>span,.sp-row>span{min-width:0}
     .sp-short{display:none}
     .sp-row:last-child{border-bottom:0}
@@ -412,8 +412,8 @@
       #leads .stage-card .sc-count{font-size:26px;margin-top:5px}
       #leads .sp-head,#leads .sp-row{padding-top:7px;padding-bottom:7px}
       /* By-salesperson audit table: fixed compact numeric columns so all
-         eight columns fit a phone screen — no sideways scrolling */
-      #leads .sp-head,#leads .sp-row{grid-template-columns:minmax(0,1fr) 28px 23px 28px 27px 28px 28px 26px;gap:5px}
+         seven columns fit a phone screen — no sideways scrolling */
+      #leads .sp-head,#leads .sp-row{grid-template-columns:minmax(0,1fr) 30px 26px 30px 28px 26px 30px;gap:5px}
       #leads .sp-head>span{font-size:8px;letter-spacing:.02em}
       #leads .sp-name{font-size:13px;line-height:1.2}
       #leads .sp-row>span:not(:first-child){font-size:12.5px}
@@ -670,12 +670,12 @@
     </section>
 
     <section id="leads" class="view">
-      <p class="snapshot-note">SNAPSHOT · OCT 19 — OCTOBER SNAPSHOT · STAGES FROM PROJECT RESURRECTION</p>
+      <p class="snapshot-note">FULL OCTOBER CENSUS — EVERY LEAD CREATED OCT 1–21, STAGED BY LOGGED ACTIVITY</p>
       <div class="lead-metrics">
         <article class="card card-pad">
           <span class="section-label">Total leads · October</span>
           <div class="lead-big cyan" id="totalLeads">–</div>
-          <span class="metric-sub">All lead types · Oct 1–19 snapshot</span>
+          <span class="metric-sub">All lead types · Oct 1–21 census</span>
         </article>
         <article class="card card-pad">
           <span class="section-label">Total internet leads · October</span>
@@ -695,30 +695,29 @@
       </div>
       <div class="split-grid">
         <article class="card card-pad span-12">
-          <div class="card-head"><div><span class="section-label">Pipeline · tap a stage to filter the list</span><h2 class="card-title">Stages</h2></div><span class="tap">ELEAD 9433 · OCT 1–19</span></div>
+          <div class="card-head"><div><span class="section-label">Pipeline · tap a stage to filter the list</span><h2 class="card-title">Stages</h2></div><span class="tap">ELEAD 9433 · OCT 1–21</span></div>
           <div class="stage-grid" id="stageGrid"></div>
         </article>
         <article class="card card-pad span-12">
-          <div class="card-head"><div><span class="section-label">Audit</span><h2 class="card-title">By salesperson</h2></div><span class="tap">ELEAD 9433 · OCT 1–19</span></div>
+          <div class="card-head"><div><span class="section-label">Audit</span><h2 class="card-title">By salesperson</h2></div><span class="tap">ELEAD 9433 · OCT 1–21</span></div>
           <div id="repTable"></div>
         </article>
         <article class="card card-pad span-12">
-          <div class="card-head"><div><span class="section-label">Project Resurrection</span><h2 class="card-title">Lead list</h2></div><span class="tap">TAP A LEAD FOR DETAIL ›</span></div>
+          <div class="card-head"><div><span class="section-label">Full census · Oct 1–21</span><h2 class="card-title">Lead list</h2></div><span class="tap">TAP A LEAD FOR DETAIL ›</span></div>
           <div class="lead-controls">
             <select class="week-select" id="weekSelect" aria-label="Filter leads by week">
-              <option value="rolling" selected>Current 7 days (rolling) · Oct 13–19</option>
+              <option value="all" selected>All leads · Oct 1–21</option>
               <option value="w1">Week 1 · Oct 1–7</option>
               <option value="w2">Week 2 · Oct 8–14</option>
               <option value="w3">Week 3 · Oct 15–21</option>
-              <option value="w4">Week 4 · Oct 22–28</option>
-              <option value="w5">Week 5 · Oct 29–31</option>
-              <option value="all">All leads</option>
             </select>
             <span class="lead-count-line" id="leadCountLine"></span>
             <button class="clear-filter" id="clearFilter" type="button" hidden>CLEAR FILTERS</button>
           </div>
           <div class="lead-head" id="leadHead" aria-hidden="false"></div>
           <div id="leadList"></div>
+          <p class="footnote" style="margin:14px 0 0">9 junk/test records excluded from this census — the dealership's own record, staff/test records, a vendor pitch, a job application, a parts inquiry, and a campaign auto-insert.</p>
+          <p class="footnote" style="margin:6px 0 0">Data flag: Todd Decourcy appears twice in the list — both records Sold, same phone and vehicle — likely the same sale recorded twice in the CRM.</p>
         </article>
       </div>
     </section>
@@ -816,10 +815,12 @@
     })();
   </script>
   <script>
-    /* LEADS snapshot — static Project Resurrection data (Oct 19). Not touched by the sales-log LIVE refresh. */
+    /* LEADS census — static full October census (Oct 1-21, eLEAD 9433).
+       Every figure on this tab is counted from the single 230-lead list
+       below. Not touched by the sales-log LIVE refresh. */
     (function(){
       var STAGES=[
-        {key:'new',label:'New — Not Contacted',short:'New'},
+        {key:'new',label:'New \u2014 Not Contacted',short:'New'},
         {key:'working',label:'Working',short:'Working'},
         {key:'engaged',label:'Engaged',short:'Engaged'},
         {key:'negotiation',label:'Negotiation',short:'Negotiation'},
@@ -828,93 +829,253 @@
       ];
       var stageOrder={},stageShort={};
       STAGES.forEach(function(s,i){stageOrder[s.key]=i;stageShort[s.key]=s.short});
-      /* name | vehicle | salesperson | date in | stage | next task | due | touches | score | phone */
-      var RAW=[
-        ['Roberto Acoff','2024 Used Nissan Altima','Rudy Escobar-Avila','2026-10-10','new','','',0,0,'(434) 215-4945'],
-        ['Antonio Andrews','2026 New KIA Sportage','Bob Borowski II','2026-10-10','new','','',0,0,'(540) 566-8903'],
-        ['Chanel Andrews','','Nathan Billings','2026-10-17','working','','',1,25,'(434) 439-6004'],
-        ['Linda Bartlett','2027 New KIA Sportage Hybrid','Caleb Banaitis','2026-10-16','new','','',0,0,'(314) 799-1562'],
-        ['Nadia Baytops','2026 New KIA K5','Rudy Escobar-Avila','2026-10-12','new','','',0,0,'(540) 519-2457'],
-        ['Stevie Bond','2027 New KIA Sportage','Rudy Escobar-Avila','2026-10-11','new','','',0,0,'(540) 570-3505'],
-        ['Destiny Brown','2026 New KIA','Nathan Billings','2026-10-12','new','','',0,0,'(434) 229-0660'],
-        ['Xenia Cabacungan','2026 New KIA Sorento','Nathan Billings','2026-10-11','new','','',0,0,'(434) 938-2500'],
-        ['Brenda Cash','2018 Used Honda CR-V','Bob Borowski II','2026-10-17','appointment','Appointment','2026-10-19',0,30,'(434) 444-5844'],
-        ['S Choksha','2026 New KIA Niro EV','Bob Borowski II','2026-10-15','working','','',0,0,''],
-        ['Auna Cook','2016 Used Ford Explorer','Nathan Billings','2026-10-10','new','Day 1 Email','2026-10-11',0,0,''],
-        ['Patty Cooper','2026 New KIA EV6','Caleb Banaitis','2026-10-18','working','','',0,0,'(540) 484-3719'],
-        ['Mildred Culpeper','2027 New KIA Sportage','Caleb Banaitis','2026-10-15','new','','',0,0,'(434) 219-7938'],
-        ['Keisha D','2016 Used Ford Explorer','Bob Borowski II','2026-10-14','working','','',0,0,'(434) 347-0748'],
-        ['Troy Deeds','2027 New KIA Sportage Hybrid','Victor Napolillo','2026-10-13','working','','',0,0,'(434) 996-4706'],
-        ['Freddie Dempsey','2016 Used Ford Explorer','Rudy Escobar-Avila','2026-10-18','working','','',0,0,'(540) 525-2500'],
-        ['Amber Eisenhart','2016 Used Ford Explorer','Victor Napolillo','2026-10-18','new','','',0,0,'(434) 317-0292'],
-        ['Tammi Ferguson','2026 New KIA EV9','Caleb Banaitis','2026-10-16','new','','',0,0,'(540) 204-7722'],
-        ['Colleen Frahm','2026 New KIA Sorento','Nathan Billings','2026-10-12','new','','',0,0,'(757) 374-1606'],
-        ['Michael Frank','2027 New KIA Sorento','Victor Napolillo','2026-10-15','new','','',0,0,'(540) 494-9037'],
-        ['Jim Hamilton','2027 New KIA Sportage Hybrid','Victor Napolillo','2026-10-11','new','','',0,0,'(540) 473-1476'],
-        ['Kristy Haythe','','Caleb Banaitis','2026-10-18','new','','',0,0,'(434) 382-7123'],
-        ['Claudia Hedrick','2023 New KIA Sportage','Bob Borowski II','2026-10-16','working','','',0,0,''],
-        ['Robert Hendrick','2027 New KIA Telluride','Nathan Billings','2026-10-15','new','','',0,0,'(434) 907-0094'],
-        ['Janet Hostetter','2026 New KIA Sportage','Rudy Escobar-Avila','2026-10-11','new','','',0,0,'(540) 460-5804'],
-        ['Charnise Huggins','2027 New KIA Telluride','Bob Borowski II','2026-10-18','working','','',0,0,'(434) 426-0446'],
-        ['Brayden Huseonica','2026 New KIA K4','Bob Borowski II','2026-10-10','new','','',0,0,'(434) 856-6689'],
-        ['Mary Jackson','2027 New KIA Telluride','Chester Cook','2026-10-17','working','','',0,0,'(434) 841-7171'],
-        ['Mary Johnson','2027 New KIA Telluride','Victor Napolillo','2026-10-17','new','','',0,0,'(540) 313-2876'],
-        ['Daryl Johnson','2026 New KIA Sorento','Victor Napolillo','2026-10-14','new','','',0,0,'(540) 420-7528'],
-        ['Lisa Jones','2026 New KIA EV6','Caleb Banaitis','2026-10-14','new','','',0,0,'(434) 709-6550'],
-        ['Amy McClure','2027 New KIA Telluride','Nathan Billings','2026-10-11','new','','',0,0,'(434) 480-2046'],
-        ['Faheem Megginson','2024 Used Mazda Mazda3','Bob Borowski II','2026-10-17','appointment','Appointment','2026-10-19',0,30,'(434) 291-0101'],
-        ['Helen Melunis','2026 New KIA Niro','Bob Borowski II','2026-10-11','new','','',0,0,'(434) 363-1788'],
-        ['Elias Michael','2026 Used KIA Sorento','Rudy Escobar-Avila','2026-10-12','new','','',0,0,'(434) 455-7410'],
-        ['Jimmie Montgomery','2027 New KIA Sportage','Nathan Billings','2026-10-16','working','','',0,0,'(540) 618-7107'],
-        ['Nikki Moshier','2027 New KIA Telluride','Nathan Billings','2026-10-10','new','No Show Call','2026-10-17',0,0,'(434) 575-0085'],
-        ['Victor Napolillo','2026 Used KIA Sorento','Victor Napolillo','2026-10-12','new','','',0,0,'(434) 941-6095'],
-        ['Donni Nicely','2026 New KIA Sorento','Victor Napolillo','2026-10-11','new','','',0,0,'(434) 610-9225'],
-        ['Timmaine Pannell','','Rudy Escobar-Avila','2026-10-17','new','','',0,0,'(434) 285-0687'],
-        ['James Parrish','2025 New KIA Soul','Victor Napolillo','2026-10-11','new','','',0,0,'(434) 420-0346'],
-        ['Fabian Poindexter','','Caleb Banaitis','2026-10-14','new','','',0,0,'(434) 454-0150'],
-        ['Samantha Ronk','2027 New KIA Telluride','Caleb Banaitis','2026-10-13','new','','',0,0,'(540) 797-5541'],
-        ['Randy Sheppard','2027 New KIA K5','Bob Borowski II','2026-10-18','working','Day 1 Email','2026-10-19',0,0,'(540) 239-4424'],
-        ['Greg Shumaker','2026 New KIA Carnival Hybrid','Rudy Escobar-Avila','2026-10-16','negotiation','','',0,0,'(757) 533-1802'],
-        ['Oluwapelumi Sijuade','2027 New KIA K5','Nathan Billings','2026-10-15','new','','',0,0,''],
-        ['Janet Smith','2027 New KIA K4','Bob Borowski II','2026-10-13','working','Phone Follow Up','2026-10-19',0,0,'(540) 986-3874'],
-        ['Erika Sorto','2026 New KIA K5','Victor Napolillo','2026-10-17','new','','',0,0,'(540) 682-0923'],
-        ['Paul Staffieri','2027 New KIA Telluride Hybrid','Nathan Billings','2026-10-12','new','','',0,0,'(732) 513-0518'],
-        ['Tim Stover','2016 Used Ford Explorer','Victor Napolillo','2026-10-18','new','','',0,0,'(804) 466-8834'],
-        ['James Tackett','2027 New KIA Carnival Hybrid','Nathan Billings','2026-10-10','new','','',0,0,'(606) 336-1982'],
-        ['Stephanie Thomas','','Bob Borowski II','2026-10-11','new','','',0,0,'(540) 263-8081'],
-        ['Alexis Thomas','2027 New KIA Sorento Hybrid','Rudy Escobar-Avila','2026-10-13','new','','',0,0,'(434) 941-6451'],
-        ['Darlene Thompson','2023 Used KIA Sportage','Rudy Escobar-Avila','2026-10-11','new','','',0,0,'(540) 294-0585'],
-        ['Danielle Thompson','2027 New KIA Seltos','Nathan Billings','2026-10-18','working','','',0,0,'(540) 450-9579'],
-        ['Catherine Trettin','2026 New KIA Niro','Nathan Billings','2026-10-18','working','','',0,0,'(443) 716-9102'],
-        ['Nikolai Utkin','2027 New KIA Sportage Hybrid','Caleb Banaitis','2026-10-17','new','','',0,0,'(801) 874-0869'],
-        ['Meg Wassum','2027 New KIA Carnival Hybrid','Victor Napolillo','2026-10-10','new','','',0,0,'(804) 972-4041'],
-        ['Christopher Weber','2027 New KIA Telluride','Rudy Escobar-Avila','2026-10-15','negotiation','','',0,0,''],
-        ['David Webster','2027 New KIA Telluride','Victor Napolillo','2026-10-14','new','','',0,0,'(540) 400-2045'],
-        ['Stephanie Whisman','2027 New KIA Seltos','Victor Napolillo','2026-10-16','new','','',0,0,'(540) 467-0453'],
-        ['Stephanie Whisman','2027 New KIA Seltos','Victor Napolillo','2026-10-15','new','','',0,0,'(540) 467-0085'],
-        ['Bruce Wood','2027 New KIA Telluride','Bob Borowski II','2026-10-12','new','','',0,0,'(540) 890-5554'],
-        ['Denise Wood','','Victor Napolillo','2026-10-15','new','','',0,0,'(434) 942-1771'],
-        ['Mary Wright','2027 New KIA Carnival Hybrid','Nathan Billings','2026-10-15','working','','',0,0,'(540) 588-8093'],
-        ['Blake Yates','2026 New KIA K4','Caleb Banaitis','2026-10-15','new','','',0,0,'(352) 931-2806']
+      /* name | phone | type | salesperson | date in | stage */
+      var RAW=[        ['KAREN HERNDON','(434) 229-2805','Phone Up','Nathan Billings','2026-10-06','working'],
+        ['LENDA HARRIS','(434) 929-0917','Internet Up','Bob Borowski II','2026-10-06','negotiation'],
+        ['Chance Campbell','(540) 765-8861','Internet Up','Victor Napolillo','2026-10-06','negotiation'],
+        ['Susan Godsey','(434) 942-9569','Internet Up','Caleb Banaitis','2026-10-03','engaged'],
+        ['Helen Melunis','(434) 386-3103','Internet Up','Bob Borowski II','2026-10-11','engaged'],
+        ['William Ross','(434) 444-7541','Internet Up','Victor Napolillo','2026-10-09','working'],
+        ['James Bane','(434) 401-9933','Internet Up','Bob Borowski II','2026-10-16','working'],
+        ['SHARON DOUGLASS','(434) 332-7814','Internet Up','Bob Borowski II','2026-10-11','sold'],
+        ['DOVE PIERCY','(434) 610-6582','Internet Up','Victor Napolillo','2026-10-19','appointment'],
+        ['Lawson Pritchett','(434) 329-2058','Phone Up','Nathan Billings','2026-10-06','working'],
+        ['Crystal McGann','(434) 907-3634','Phone Up','Nathan Billings','2026-10-06','working'],
+        ['Jackie Canada','(434) 238-5860','Internet Up','Nathan Billings','2026-10-02','working'],
+        ['James Crawley','(434) 929-6556','Showroom Up','Bob Borowski II','2026-10-13','negotiation'],
+        ['VIOLET TRENT','(540) 655-3303','Internet Up','Nathan Billings','2026-10-06','working'],
+        ['MELVIN WRENN','(540) 587-4008','Internet Up','Victor Napolillo','2026-10-08','working'],
+        ['Susan Easton','(315) 486-9993','Internet Up','Bob Borowski II','2026-10-02','working'],
+        ['James Parrish','(434) 420-0346','Internet Up','Victor Napolillo','2026-10-11','working'],
+        ['DONNI NICELY','(434) 610-9225','Internet Up','Victor Napolillo','2026-10-11','working'],
+        ['Mildred Culpeper','(434) 219-7938','Internet Up','Caleb Banaitis','2026-10-15','working'],
+        ['Charnise Huggins','(434) 426-0446','Internet Up','Bob Borowski II','2026-10-18','appointment'],
+        ['Brenda Ross','(336) 420-9151','Internet Up','Victor Napolillo','2026-10-08','working'],
+        ['Lorraine Arnold','(540) 354-0986','Internet Up','Bob Borowski II','2026-10-06','engaged'],
+        ['John Wright','(434) 391-4510','Showroom Up','Rudy Escobar-Avila','2026-10-21','negotiation'],
+        ['Carmelia Hubbard','(434) 944-0464','Phone Up','Bob Borowski II','2026-10-16','negotiation'],
+        ['David Webster','(540) 400-2045','Internet Up','Victor Napolillo','2026-10-14','working'],
+        ['JOHN AGNEW','(434) 941-1965','Internet Up','Rudy Escobar-Avila','2026-10-02','working'],
+        ['Janet Smith','(540) 986-3874','Internet Up','Bob Borowski II','2026-10-13','working'],
+        ['Logan Macgregor','(989) 600-5382','Showroom Up','Rudy Escobar-Avila','2026-10-01','appointment'],
+        ['Nancy Wilson','(826) 253-3309','Internet Up','Caleb Banaitis','2026-10-09','appointment'],
+        ['Mary Johnson','(540) 313-2876','Internet Up','Victor Napolillo','2026-10-17','working'],
+        ['Howard Myers','(540) 488-2080','Internet Up','Victor Napolillo','2026-10-02','working'],
+        ['Brionna Jones','(434) 426-9910','Showroom Up','Victor Napolillo','2026-10-08','negotiation'],
+        ['Sandy Thomas','(434) 509-9905','Internet Up','Bob Borowski II','2026-10-20','engaged'],
+        ['Melissa Charlton','(540) 583-0166','Showroom Up','Bob Borowski II','2026-10-09','engaged'],
+        ['Jerry Tyree','(540) 960-3529','Internet Up','Victor Napolillo','2026-10-05','working'],
+        ['JENNIFER MARTIN','(434) 534-4744','Phone Up','Caleb Banaitis','2026-10-07','working'],
+        ['John Hughes','(434) 485-4808','Showroom Up','Bob Borowski II','2026-10-14','engaged'],
+        ['MELODY BROWN','(434) 333-8175','Showroom Up','Victor Napolillo','2026-10-12','negotiation'],
+        ['James Tackett','(606) 336-1982','Internet Up','Nathan Billings','2026-10-10','working'],
+        ['Erica Collier','(540) 910-3408','Internet Up','Rudy Escobar-Avila','2026-10-19','working'],
+        ['Ricki Nichols','(434) 579-6070','Internet Up','Nathan Billings','2026-10-02','working'],
+        ['Samone Sandidge Santillan','(434) 907-2168','Internet Up','Victor Napolillo','2026-10-02','negotiation'],
+        ['Sheryl Hughes','(804) 517-6070','Showroom Up','Bob Borowski II','2026-10-19','negotiation'],
+        ['EMILY CLIMER','(423) 457-7638','Campaign','Victor Napolillo','2026-10-03','working'],
+        ['Timmaine Pannell','(434) 285-0687','Internet Up','Rudy Escobar-Avila','2026-10-17','working'],
+        ['Thomas Scott','(434) 841-7039','Phone Up','Victor Napolillo','2026-10-20','negotiation'],
+        ['Aaliyah Gunn','(434) 688-8353','Internet Up','Victor Napolillo','2026-10-07','working'],
+        ['Patty Cooper','(540) 483-7319','Internet Up','Caleb Banaitis','2026-10-18','working'],
+        ['James Joplin Sr','(540) 352-9503','Internet Up','Caleb Banaitis','2026-10-19','working'],
+        ['Kelly Felton','(434) 907-9334','Internet Up','Victor Napolillo','2026-10-01','working'],
+        ['Robert Hendrick','(434) 907-0094','Internet Up','Nathan Billings','2026-10-15','working'],
+        ['DON MCGREGOR','(434) 238-0533','Phone Up','Bob Borowski II','2026-10-17','negotiation'],
+        ['Daryl Johnson','(540) 420-7528','Internet Up','Victor Napolillo','2026-10-14','working'],
+        ['TR\'mayal CASH','(434) 534-1226','Showroom Up','Caleb Banaitis','2026-10-16','sold'],
+        ['Olivia Cuartas','(631) 891-5662','Phone Up','Bob Borowski II','2026-10-10','negotiation'],
+        ['Michael Frank','(540) 494-9037','Internet Up','Victor Napolillo','2026-10-15','engaged'],
+        ['BRITTANY MARCUS','(434) 439-8587','Campaign','Bob Borowski II','2026-10-02','negotiation'],
+        ['Stephanie Thomas','(540) 263-8081','Internet Up','Bob Borowski II','2026-10-11','working'],
+        ['Brayden Huseonica','(434) 856-6689','Internet Up','Bob Borowski II','2026-10-10','working'],
+        ['David Bond','(915) 479-4726','Internet Up','Victor Napolillo','2026-10-15','sold'],
+        ['Darlene Thompson','(540) 294-0585','Internet Up','Rudy Escobar-Avila','2026-10-11','working'],
+        ['Colleen Frahm','(757) 374-1606','Internet Up','Nathan Billings','2026-10-12','engaged'],
+        ['Mark Bienkowski','(434) 610-4114','Internet Up','Rudy Escobar-Avila','2026-10-04','sold'],
+        ['Erika Sorto','(540) 682-0923','Internet Up','Victor Napolillo','2026-10-17','working'],
+        ['Barbara Jenkins','(434) 473-1887','Internet Up','Nathan Billings','2026-10-01','working'],
+        ['Faith Tomes','(804) 216-9062','Showroom Up','Victor Napolillo','2026-10-01','negotiation'],
+        ['Edith Easley','(434) 349-3797','Internet Up','Rudy Escobar-Avila','2026-10-01','working'],
+        ['Gloria Carter','','Internet Up','Nathan Billings','2026-10-01','working'],
+        ['Camille Ray','(540) 589-6059','Internet Up','Victor Napolillo','2026-10-01','working'],
+        ['Alan Childress','(540) 798-8783','Phone Up','Nathan Billings','2026-10-01','engaged'],
+        ['Ramirez NoLastName140473028','(336) 514-0264','Internet Up','Bob Borowski II','2026-10-01','negotiation'],
+        ['Ta\'Niya Trent','(434) 391-9196','Internet Up','Rudy Escobar-Avila','2026-10-01','working'],
+        ['Dennis Amoah','(540) 815-2580','Internet Up','Nathan Billings','2026-10-01','working'],
+        ['Marina Cianchetta','(973) 668-8321','Internet Up','Rudy Escobar-Avila','2026-10-02','sold'],
+        ['Ramirez Hernandez','(336) 514-0264','Internet Up','Bob Borowski II','2026-10-02','negotiation'],
+        ['Syndel Simpson','(304) 250-8546','Internet Up','Rudy Escobar-Avila','2026-10-02','working'],
+        ['Beau Moore','(904) 801-9655','Showroom Up','Victor Napolillo','2026-10-02','engaged'],
+        ['Berneta Perkins','(434) 515-3992','Internet Up','Bob Borowski II','2026-10-02','working'],
+        ['Josh Tuck','(434) 401-9016','Internet Up','Bob Borowski II','2026-10-06','appointment'],
+        ['Demeir Bowling','(434) 473-1461','Internet Up','Victor Napolillo','2026-10-06','working'],
+        ['Wanda Richards','(540) 520-6434','Internet Up','Rudy Escobar-Avila','2026-10-07','working'],
+        ['Kristen Moore','','Internet Up','Victor Napolillo','2026-10-07','working'],
+        ['Chantal Cox','(434) 515-3760','Phone Up','Bob Borowski II','2026-10-07','appointment'],
+        ['Kernesha Lewis','(434) 450-5039','Internet Up','Bob Borowski II','2026-10-07','working'],
+        ['Georgianna FAUNTEROY','(434) 603-9552','Phone Up','Bob Borowski II','2026-10-07','engaged'],
+        ['Takaylah Anderson','(434) 221-6499','Internet Up','Bob Borowski II','2026-10-07','engaged'],
+        ['Mikaela Updike','(757) 502-9286','Showroom Up','Victor Napolillo','2026-10-07','negotiation'],
+        ['Alexis McClung','(434) 340-1614','Internet Up','Nathan Billings','2026-10-03','working'],
+        ['Ashley Slaydon','(757) 377-4778','Internet Up','Victor Napolillo','2026-10-03','engaged'],
+        ['Mary Allen','(540) 415-0687','Internet Up','Bob Borowski II','2026-10-03','working'],
+        ['Dee Dee Harris','(434) 944-7491','Internet Up','Nathan Billings','2026-10-03','engaged'],
+        ['Damian Santiago','','Internet Up','Victor Napolillo','2026-10-03','working'],
+        ['Brad Addo','(804) 972-1061','Phone Up','Bob Borowski II','2026-10-03','engaged'],
+        ['Vicki S Copeland','(434) 841-1059','Internet Up','Bob Borowski II','2026-10-03','engaged'],
+        ['Norman Lewis Mosley','(434) 755-5365','Phone Up','Nathan Billings','2026-10-03','working'],
+        ['Mike Strader','(540) 977-1454','Internet Up','Bob Borowski II','2026-10-04','engaged'],
+        ['Vatial Burruss','(540) 245-9207','Internet Up','Nathan Billings','2026-10-04','working'],
+        ['Lewis Campbell','(540) 278-3696','Internet Up','Rudy Escobar-Avila','2026-10-05','working'],
+        ['Toriano Callands','(434) 941-8014','Showroom Up','Bob Borowski II','2026-10-05','sold'],
+        ['Jessica Moore','(540) 420-1993','Internet Up','Nathan Billings','2026-10-05','working'],
+        ['Ariana Smith','(434) 665-8975','Showroom Up','Bob Borowski II','2026-10-05','sold'],
+        ['Kimberly Nye','','Internet Up','Bob Borowski II','2026-10-05','working'],
+        ['Susan Godsey','(434) 942-9569','Showroom Up','Caleb Banaitis','2026-10-05','sold'],
+        ['Kristina Rodgers','(540) 471-6175','Internet Up','Rudy Escobar-Avila','2026-10-05','working'],
+        ['Que Johnson','(434) 948-8291','Internet Up','Nathan Billings','2026-10-05','working'],
+        ['Ethan Conrad','(804) 909-4858','Showroom Up','Victor Napolillo','2026-10-05','negotiation'],
+        ['August Bowman','(540) 761-3999','Internet Up','Nathan Billings','2026-10-05','working'],
+        ['Donsha Hairston','(540) 519-5398','Internet Up','Nathan Billings','2026-10-06','working'],
+        ['Patsy Hannah','(252) 717-4658','Internet Up','Rudy Escobar-Avila','2026-10-06','engaged'],
+        ['Kevin Casey','(216) 894-0739','Phone Up','Bob Borowski II','2026-10-06','negotiation'],
+        ['Debra Webb-Feifel','','Internet Up','Rudy Escobar-Avila','2026-10-06','working'],
+        ['Bella Mckay','(802) 689-0198','Phone Up','Bob Borowski II','2026-10-06','engaged'],
+        ['Kaleia Akaveani','(540) 278-5524','Internet Up','Nathan Billings','2026-10-06','working'],
+        ['Ruby Chambers','(434) 473-9722','Showroom Up','Bob Borowski II','2026-10-06','negotiation'],
+        ['Katelin Powell','(757) 646-2228','Internet Up','Bob Borowski II','2026-10-07','engaged'],
+        ['Sandra Balgobin Dwarika','(804) 903-9268','Internet Up','Victor Napolillo','2026-10-07','working'],
+        ['Jose Luis Baca Carrasco','(208) 252-2706','Internet Up','Victor Napolillo','2026-10-07','engaged'],
+        ['Latisha Jackson','(540) 595-8243','Internet Up','Nathan Billings','2026-10-08','engaged'],
+        ['Tamra Lovern','(540) 353-3690','Internet Up','Victor Napolillo','2026-10-08','sold'],
+        ['Ricky Hickson','(540) 529-8550','Internet Up','Rudy Escobar-Avila','2026-10-08','working'],
+        ['Christina Chewning','(434) 426-8763','Internet Up','Nathan Billings','2026-10-08','engaged'],
+        ['Kevin Gitangaza','(202) 339-1005','Internet Up','Rudy Escobar-Avila','2026-10-08','engaged'],
+        ['Sandy Martin','(434) 221-4400','Internet Up','Nathan Billings','2026-10-08','working'],
+        ['Ninoska Santiago','(434) 258-3918','Internet Up','Rudy Escobar-Avila','2026-10-09','working'],
+        ['REGINALD TYREE','(434) 851-8575','Showroom Up','Rudy Escobar-Avila','2026-10-09','engaged'],
+        ['Tami Kornbau','(434) 849-2023','Internet Up','Nathan Billings','2026-10-09','sold'],
+        ['Philip Liddle','(434) 851-6638','Showroom Up','Bob Borowski II','2026-10-09','negotiation'],
+        ['Tyra Thurman','(434) 213-5032','Showroom Up','Victor Napolillo','2026-10-09','negotiation'],
+        ['Valinda Chaney','(434) 272-9258','Internet Up','Rudy Escobar-Avila','2026-10-09','engaged'],
+        ['Mary Torrence','(434) 728-8244','Internet Up','Bob Borowski II','2026-10-09','working'],
+        ['CLAYTON NEAL','(434) 665-2479','Showroom Up','Nathan Billings','2026-10-09','sold'],
+        ['Teresa Turpin','(540) 529-4447','Internet Up','Nathan Billings','2026-10-09','working'],
+        ['Name Unknown','(434) 582-2416','Phone Up','Rudy Escobar-Avila','2026-10-09','engaged'],
+        ['DARREN WU','(434) 300-9577','Phone Up','Caleb Banaitis','2026-10-09','sold'],
+        ['Deaundre Evans','(804) 584-3565','Internet Up','Victor Napolillo','2026-10-09','working'],
+        ['Iris Bonilla','(703) 863-8599','Showroom Up','Caleb Banaitis','2026-10-09','sold'],
+        ['Islam Saleh','(727) 366-2583','Showroom Up','Bob Borowski II','2026-10-09','engaged'],
+        ['Seth Fleenor','(276) 920-2306','Internet Up','Bob Borowski II','2026-10-09','engaged'],
+        ['Morgan Garcia','(704) 668-7521','Internet Up','Bob Borowski II','2026-10-09','working'],
+        ['Christi Stalcup','(434) 329-9888','Internet Up','Rudy Escobar-Avila','2026-10-09','working'],
+        ['Sallie Kimberlin','','Internet Up','Victor Napolillo','2026-10-09','working'],
+        ['Enock Magabi','','Internet Up','Bob Borowski II','2026-10-09','working'],
+        ['Antonio Andrews','(540) 566-8903','Internet Up','Bob Borowski II','2026-10-10','working'],
+        ['Roberto Acoff','(434) 215-4945','Internet Up','Rudy Escobar-Avila','2026-10-10','working'],
+        ['Landyn Macgregor','','Showroom Up','Rudy Escobar-Avila','2026-10-10','engaged'],
+        ['Meg Wassum','(804) 972-4041','Internet Up','Victor Napolillo','2026-10-10','engaged'],
+        ['Teresa Kane','(757) 403-7353','Showroom Up','Rudy Escobar-Avila','2026-10-10','sold'],
+        ['Nikki Moshier','(434) 575-0085','Internet Up','Nathan Billings','2026-10-10','engaged'],
+        ['Adam Stalcup','(434) 329-9782','Phone Up','Nathan Billings','2026-10-10','sold'],
+        ['Coleen Miller','(434) 221-5503','Showroom Up','Caleb Banaitis','2026-10-10','negotiation'],
+        ['Christopher Wilmouth','(434) 401-4161','Showroom Up','Bob Borowski II','2026-10-10','appointment'],
+        ['Auna Cook','','Internet Up','Nathan Billings','2026-10-10','working'],
+        ['Jim Hamilton','(540) 473-1476','Internet Up','Victor Napolillo','2026-10-11','working'],
+        ['Janet Hostetter','(540) 460-5804','Internet Up','Rudy Escobar-Avila','2026-10-11','working'],
+        ['Xenia Cabacungan','(434) 938-2500','Internet Up','Nathan Billings','2026-10-11','negotiation'],
+        ['Stevie Bond','(540) 570-3505','Internet Up','Rudy Escobar-Avila','2026-10-11','working'],
+        ['Amy McClure','(434) 480-2046','Internet Up','Nathan Billings','2026-10-11','working'],
+        ['Craig Haley','(734) 552-1717','Showroom Up','Bob Borowski II','2026-10-12','negotiation'],
+        ['Cody Hughes','(501) 529-9222','Showroom Up','Victor Napolillo','2026-10-12','sold'],
+        ['Caitlin Kingery','(434) 390-7966','Internet Up','Bob Borowski II','2026-10-12','working'],
+        ['Bruce Wood','(540) 890-5554','Internet Up','Bob Borowski II','2026-10-12','working'],
+        ['Paul Staffieri','(732) 513-0518','Internet Up','Nathan Billings','2026-10-12','engaged'],
+        ['CORBAN BILES','(512) 917-6884','Internet Up','Nathan Billings','2026-10-12','sold'],
+        ['Nadia Baytops','(540) 519-2457','Internet Up','Rudy Escobar-Avila','2026-10-12','working'],
+        ['Dynesty Turner','(434) 826-9303','Internet Up','Bob Borowski II','2026-10-12','engaged'],
+        ['Alexis Thomas','(434) 941-6451','Internet Up','Rudy Escobar-Avila','2026-10-13','engaged'],
+        ['Park Center Management Llc','(336) 544-1120','Phone Up','Nathan Billings','2026-10-13','engaged'],
+        ['DEBORAH BELONY','(434) 228-5823','Showroom Up','Rudy Escobar-Avila','2026-10-10','sold'],
+        ['Samantha Ronk','(540) 797-5541','Internet Up','Caleb Banaitis','2026-10-13','working'],
+        ['Troy Deeds','(434) 996-4706','Internet Up','Victor Napolillo','2026-10-13','working'],
+        ['Cody Ling','','Internet Up','Nathan Billings','2026-10-13','engaged'],
+        ['Fabian Poindexter','(434) 454-0150','Internet Up','Caleb Banaitis','2026-10-14','working'],
+        ['Keisha D','(434) 347-0748','Internet Up','Bob Borowski II','2026-10-14','engaged'],
+        ['Lisa Jones','(434) 709-6550','Internet Up','Caleb Banaitis','2026-10-14','working'],
+        ['Butch Schaffer','(540) 798-2866','Internet Up','Rudy Escobar-Avila','2026-10-15','engaged'],
+        ['Oluwapelumi Sijuade','','Internet Up','Nathan Billings','2026-10-15','working'],
+        ['Denise Wood','(434) 942-1771','Internet Up','Victor Napolillo','2026-10-15','working'],
+        ['MATTHEW WEATHERFORD','(434) 203-7143','Internet Up','Rudy Escobar-Avila','2026-10-15','sold'],
+        ['Joseph Williams','(434) 229-3124','Phone Up','Victor Napolillo','2026-10-15','engaged'],
+        ['Mary Wright','(540) 588-8093','Internet Up','Nathan Billings','2026-10-15','working'],
+        ['Blake Yates','(352) 931-2806','Internet Up','Caleb Banaitis','2026-10-15','engaged'],
+        ['S Choksha','','Internet Up','Bob Borowski II','2026-10-15','working'],
+        ['Christopher Weber','','Internet Up','Rudy Escobar-Avila','2026-10-15','working'],
+        ['Stephanie Whisman','(540) 467-0085','Internet Up','Victor Napolillo','2026-10-15','working'],
+        ['Tammi Ferguson','(540) 204-7722','Internet Up','Caleb Banaitis','2026-10-16','working'],
+        ['Claudia Hedrick','','Internet Up','Bob Borowski II','2026-10-16','working'],
+        ['Greg Shumaker','(757) 533-1802','Internet Up','Rudy Escobar-Avila','2026-10-16','negotiation'],
+        ['Jimmie Montgomery','(540) 618-7107','Internet Up','Nathan Billings','2026-10-16','working'],
+        ['Stephanie Whisman','(540) 467-0453','Internet Up','Victor Napolillo','2026-10-16','engaged'],
+        ['Linda Bartlett','(314) 799-1562','Internet Up','Caleb Banaitis','2026-10-16','working'],
+        ['Chanel Andrews','(434) 439-6004','Internet Up','Nathan Billings','2026-10-17','engaged'],
+        ['Brenda Cash','(434) 444-5844','Internet Up','Bob Borowski II','2026-10-17','engaged'],
+        ['Nikolai Utkin','(801) 874-0869','Internet Up','Caleb Banaitis','2026-10-17','working'],
+        ['Faheem Megginson','(434) 291-0101','Internet Up','Bob Borowski II','2026-10-17','negotiation'],
+        ['Todd Decourcy','(434) 907-5534','Showroom Up','Caleb Banaitis','2026-10-17','sold'],
+        ['BROOKE HENLEY','(253) 906-8262','Showroom Up','Rudy Escobar-Avila','2026-10-17','engaged'],
+        ['Mary Jackson','(434) 841-7171','Internet Up','Bob Borowski II','2026-10-17','working'],
+        ['TODD DECOURCY II','(434) 907-5534','Showroom Up','Caleb Banaitis','2026-10-17','sold'],
+        ['Catherine Trettin','(443) 716-9102','Internet Up','Nathan Billings','2026-10-18','working'],
+        ['Tim Stover','(804) 466-8834','Internet Up','Victor Napolillo','2026-10-18','working'],
+        ['Kristy Haythe','(434) 382-7123','Internet Up','Caleb Banaitis','2026-10-18','working'],
+        ['Freddie Dempsey','(540) 525-2500','Internet Up','Rudy Escobar-Avila','2026-10-18','engaged'],
+        ['Danielle Thompson','(540) 450-9579','Internet Up','Nathan Billings','2026-10-18','working'],
+        ['Amber Eisenhart','(434) 317-0292','Internet Up','Victor Napolillo','2026-10-18','negotiation'],
+        ['Randy Sheppard','(540) 239-4424','Internet Up','Bob Borowski II','2026-10-18','engaged'],
+        ['George Mosley Jr','(727) 486-4744','Internet Up','Rudy Escobar-Avila','2026-10-19','working'],
+        ['Amoah Dennis','(540) 815-0883','Internet Up','Nathan Billings','2026-10-19','engaged'],
+        ['Stanley Horowski','(703) 508-7773','Internet Up','Bob Borowski II','2026-10-19','engaged'],
+        ['Jenna Cone','(681) 422-1905','Internet Up','Rudy Escobar-Avila','2026-10-19','working'],
+        ['Kelvin Blackwell','','Internet Up','Nathan Billings','2026-10-19','working'],
+        ['Geoffrey Wertz','(434) 485-6159','Showroom Up','Nathan Billings','2026-10-19','negotiation'],
+        ['Sylvia Christian','(948) 227-5134','Internet Up','Victor Napolillo','2026-10-19','working'],
+        ['Robert Moore','(434) 610-4517','Showroom Up','Caleb Banaitis','2026-10-19','engaged'],
+        ['Savannah Clay','','Internet Up','Caleb Banaitis','2026-10-19','working'],
+        ['Bonita Barksdale','(434) 323-9863','Internet Up','Bob Borowski II','2026-10-19','negotiation'],
+        ['Jayda Johnson','(540) 309-5950','Internet Up','Nathan Billings','2026-10-20','working'],
+        ['Joel William McGlothlin','(434) 996-8868','Phone Up','Nathan Billings','2026-10-20','negotiation'],
+        ['Ny Coleman','(904) 288-1032','Internet Up','Bob Borowski II','2026-10-20','working'],
+        ['Charles Yesalis','(814) 883-8563','Showroom Up','Bob Borowski II','2026-10-20','negotiation'],
+        ['Abigail Lund','(205) 613-2873','Phone Up','Bob Borowski II','2026-10-20','engaged'],
+        ['Abigail B Lund','(205) 613-2873','Phone Up','Rudy Escobar-Avila','2026-10-20','working'],
+        ['Jessica Hess','(434) 215-8394','Internet Up','Nathan Billings','2026-10-20','working'],
+        ['Detric Branch','(919) 801-2335','Internet Up','Rudy Escobar-Avila','2026-10-20','negotiation'],
+        ['Kristin McCoy','(518) 248-6208','Internet Up','Victor Napolillo','2026-10-21','engaged'],
+        ['Patricia Propson','(920) 419-0012','Showroom Up','Rudy Escobar-Avila','2026-10-21','engaged'],
+        ['Bryan Buckles','(703) 304-8994','Internet Up','Victor Napolillo','2026-10-21','working'],
+        ['Albert Delbridge','(434) 851-1990','Showroom Up','Bob Borowski II','2026-10-21','negotiation'],
+        ['Kynzie Kincaid','(804) 393-2220','Internet Up','Bob Borowski II','2026-10-21','working'],
+        ['Zavon Smith Blanton','(804) 586-0169','Internet Up','Rudy Escobar-Avila','2026-10-21','working'],
+        ['Billie Allman','(540) 556-7968','Internet Up','Victor Napolillo','2026-10-21','working']
       ];
-      var leads=RAW.map(function(r){
-        return {name:r[0],vehicle:r[1],rep:r[2],dateIn:r[3],stage:r[4],
-          task:r[5]||'Day 1 Email',due:r[6]||r[3],touches:r[7]||0,score:r[8]||0,phone:r[9]||''};
+      var leads=RAW.map(function(r,i){
+        return {name:r[0],phone:r[1],type:r[2],rep:r[3],dateIn:r[4],stage:r[5],rec:i};
       });
       var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       function fmtD(iso){var p=iso.split('-');return MONTHS[Number(p[1])-1]+' '+Number(p[2])}
       function fmtDFull(iso){var p=iso.split('-');return MONTHS[Number(p[1])-1]+' '+Number(p[2])+', '+p[0]}
       function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-      /* Month totals at the top of the tab. Total Leads is counted from
-         the snapshot list below. Internet leads (154), showroom ups (30)
-         and phone ups (22) are the October eLEAD totals from the same
-         Oct 1–19 pull — they match the Activity table on the Sales
-         People tab. */
-      var INTERNET_LEADS=154,SHOWROOM_UPS=30,PHONE_UPS=22;
+      /* Month totals at the top of the tab — every box is counted from
+         the same census list below, so the tab always foots. The 230
+         total also includes 2 Campaign leads, counted in the total only. */
+      function typeCount(prefix){var n=0;leads.forEach(function(l){if(l.type.indexOf(prefix)===0)n++});return n}
       document.getElementById('totalLeads').textContent=String(leads.length);
-      document.getElementById('totalInternet').textContent=String(INTERNET_LEADS);
-      document.getElementById('totalShowrooms').textContent=String(SHOWROOM_UPS);
-      document.getElementById('totalPhoneUps').textContent=String(PHONE_UPS);
+      document.getElementById('totalInternet').textContent=String(typeCount('Internet'));
+      document.getElementById('totalShowrooms').textContent=String(typeCount('Showroom'));
+      document.getElementById('totalPhoneUps').textContent=String(typeCount('Phone'));
       /* Stage cards */
       var stageFilter=null;
       var stageGrid=document.getElementById('stageGrid');
@@ -937,38 +1098,39 @@
           b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false');
         });
       }
-      /* By salesperson — every stage column is shown (New included) so
-         each row foots against its Leads count. */
-      var REP_STAGES=['new','working','engaged','negotiation','appointment','sold'];
+      /* By salesperson — Working through Sold plus Total. New is 0
+         store-wide, so it needs no column; every row foots to its
+         total and the columns foot to the stage cards above. */
+      var REP_STAGES=['working','engaged','negotiation','appointment','sold'];
       var repAgg={};
       leads.forEach(function(l){
         var a=repAgg[l.rep]||(repAgg[l.rep]={n:0,stages:{}});
         a.n++;a.stages[l.stage]=(a.stages[l.stage]||0)+1;
       });
       var repNames=Object.keys(repAgg).sort(function(a,b){return repAgg[b].n-repAgg[a].n||a.localeCompare(b)});
-      var SP_COLS=[['Salesperson','Salesperson'],['Leads','Leads'],['New','New'],['Working','Work'],['Engaged','Eng'],['Negotiation','Nego'],['Appointment','Appt'],['Sold','Sold']];
+      var SP_COLS=[['Salesperson','Salesperson'],['Working','Work'],['Engaged','Eng'],['Negotiation','Nego'],['Appointment','Appt'],['Sold','Sold'],['Total','Total']];
       var repHtml='<div class="sp-head">'+SP_COLS.map(function(c){return '<span><span class="sp-full">'+c[0]+'</span><span class="sp-short" aria-hidden="true">'+c[1]+'</span></span>'}).join('')+'</div>';
       repNames.forEach(function(name){
         var a=repAgg[name];
-        repHtml+='<div class="sp-row"><span class="sp-name">'+esc(name)+'</span><span>'+a.n+'</span>';
+        repHtml+='<div class="sp-row"><span class="sp-name">'+esc(name)+'</span>';
         REP_STAGES.forEach(function(k){repHtml+='<span>'+(a.stages[k]||0)+'</span>'});
-        repHtml+='</div>';
+        repHtml+='<span>'+a.n+'</span></div>';
       });
       document.getElementById('repTable').innerHTML=repHtml;
-      /* List: week filter + sort + render */
-      var WEEKS={rolling:['2026-10-13','2026-10-19'],w1:['2026-10-01','2026-10-07'],w2:['2026-10-08','2026-10-14'],w3:['2026-10-15','2026-10-21'],w4:['2026-10-22','2026-10-28'],w5:['2026-10-29','2026-10-31'],all:null};
+      /* List: week filter + sort + render. Default order is the census
+         record order (CSV order), as published. */
+      var WEEKS={all:null,w1:['2026-10-01','2026-10-07'],w2:['2026-10-08','2026-10-14'],w3:['2026-10-15','2026-10-21']};
       var weekSel=document.getElementById('weekSelect');
       var listEl=document.getElementById('leadList');
       var countLine=document.getElementById('leadCountLine');
       var clearBtn=document.getElementById('clearFilter');
-      var sortKey='dateIn',sortDir=1;
+      var sortKey='record',sortDir=1;
       var COLS=[
         {key:'name',label:'Lead'},
         {key:'dateIn',label:'Date In'},
         {key:'stage',label:'Stage'},
-        {key:'vehicle',label:'Vehicle'},
-        {key:'rep',label:'Salesperson'},
-        {key:'next',label:'Next step'}
+        {key:'type',label:'Type'},
+        {key:'rep',label:'Salesperson'}
       ];
       var headEl=document.getElementById('leadHead');
       COLS.forEach(function(c){
@@ -983,12 +1145,12 @@
       function renderHead(){
         headEl.querySelectorAll('.sort-btn').forEach(function(b){
           var c=null;COLS.forEach(function(x){if(x.key===b.dataset.key)c=x});
-          b.innerHTML=esc(c.label)+(sortKey===c.key?' <span class="arrow">'+(sortDir===1?'▲':'▼')+'</span>':'');
+          b.innerHTML=esc(c.label)+(sortKey===c.key?' <span class="arrow">'+(sortDir===1?'\u25B2':'\u25BC')+'</span>':'');
         });
       }
       function sortVal(l,key){
         if(key==='stage')return stageOrder[l.stage];
-        if(key==='next')return l.due+'|'+l.task;
+        if(key==='record')return l.rec;
         return (l[key]||'').toLowerCase();
       }
       function visibleLeads(){
@@ -1000,14 +1162,15 @@
         });
         out.sort(function(a,b){
           var va=sortVal(a,sortKey),vb=sortVal(b,sortKey);
-          if(va<vb)return -1*sortDir;if(va>vb)return 1*sortDir;return 0;
+          if(va<vb)return -1*sortDir;if(va>vb)return 1*sortDir;
+          return a.rec-b.rec;
         });
         return out;
       }
       function renderList(){
         var rows=visibleLeads();
         countLine.textContent='SHOWING '+rows.length+' OF '+leads.length+' LEADS';
-        clearBtn.hidden=!(stageFilter||weekSel.value!=='rolling');
+        clearBtn.hidden=!(stageFilter||weekSel.value!=='all');
         if(!rows.length){listEl.innerHTML='<div class="lead-empty">No leads in this window.</div>';return}
         var html='';
         rows.forEach(function(l,i){
@@ -1015,17 +1178,13 @@
             +'<span class="lead-name c-name">'+esc(l.name)+'</span>'
             +'<span class="lead-cell mut c-date" data-label="Date In">'+fmtD(l.dateIn)+'</span>'
             +'<span class="lead-cell c-stage"><span class="stage-chip '+esc(l.stage)+'">'+esc(stageShort[l.stage])+'</span></span>'
-            +'<span class="lead-cell c-veh" data-label="Vehicle">'+esc(l.vehicle||'—')+'</span>'
+            +'<span class="lead-cell c-veh" data-label="Type">'+esc(l.type)+'</span>'
             +'<span class="lead-cell c-rep" data-label="Salesperson">'+esc(l.rep)+'</span>'
-            +'<span class="lead-cell c-next" data-label="Next step">'+esc(l.task)+'<span class="due">DUE '+fmtD(l.due).toUpperCase()+'</span></span>'
             +'<span class="lead-detail">'
-            +'<span class="ld"><i>NEXT STEP </i><strong>'+esc(l.task)+'</strong></span><span class="ld-sep"> · </span>'
-            +'<span class="ld"><i>DUE </i><strong>'+esc(fmtDFull(l.due))+'</strong></span><br>'
-            +'<span class="ld"><i>PHONE </i><strong>'+esc(l.phone||'—')+'</strong></span><span class="ld-sep"> · </span>'
-            +'<span class="ld"><i>TOUCHES </i><strong>'+l.touches+'</strong></span><span class="ld-sep"> · </span>'
-            +'<span class="ld"><i>ENGAGEMENT SCORE </i><strong>'+l.score+'</strong></span><br>'
-            +'<span class="ld"><i>DATE IN </i><strong>'+esc(fmtDFull(l.dateIn))+'</strong></span><span class="ld-sep"> · </span>'
-            +'<span class="ld"><i>STAGE </i><strong>'+esc(stageShort[l.stage])+'</strong></span><span class="ld-sep"> · </span>'
+            +'<span class="ld"><i>PHONE </i><strong>'+esc(l.phone||'\u2014')+'</strong></span><span class="ld-sep"> \u00B7 </span>'
+            +'<span class="ld"><i>TYPE </i><strong>'+esc(l.type)+'</strong></span><br>'
+            +'<span class="ld"><i>DATE IN </i><strong>'+esc(fmtDFull(l.dateIn))+'</strong></span><span class="ld-sep"> \u00B7 </span>'
+            +'<span class="ld"><i>STAGE </i><strong>'+esc(stageShort[l.stage])+'</strong></span><span class="ld-sep"> \u00B7 </span>'
             +'<span class="ld"><i>SALESPERSON </i><strong>'+esc(l.rep)+'</strong></span>'
             +'</span>'
             +'</div>';
@@ -1042,7 +1201,7 @@
       }
       weekSel.addEventListener('change',renderList);
       clearBtn.addEventListener('click',function(){
-        stageFilter=null;weekSel.value='rolling';renderStages();renderList();
+        stageFilter=null;weekSel.value='all';renderStages();renderList();
       });
       renderHead();renderList();
     })();
